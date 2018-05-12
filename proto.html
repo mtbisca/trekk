@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+    <style>
+        body {
+            display: flex;
+        }
+
+        .chat-container {
+            width: 25%;
+        }
+
+        .cards-container {
+            width: 75%;
+        }
+
+        .message {
+            margin: 2em;
+        }
+
+        .is-expanded {
+            height: 10em;
+        }
+
+        .progress {
+            width: 30%;
+            display: inline-block;
+        }
+
+        .message-header {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .team-member-icon {
+            height: 2em;
+            width: 2em;
+            radius: 100%;
+        }
+
+        .message-body {
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        This is where the chat will go
+    </div>
+    <div class="cards-container">
+        <article class="message is-medium is-success">
+          <div class="message-header">
+            <p>Task 1</p>
+            <p>Deadline: 00/00/0000</p>
+          </div>
+          <div class="message-body">
+              <progress class="progress is-success" value="90" max="100">90%</progress>
+              <div class="team-member-container">
+                <img class="team-member-icon" src="bot.png"></img>
+                <img class="team-member-icon" src="bot.png"></img>
+                <img class="team-member-icon" src="bot.png"></img>
+              </div>
+          </div>
+        </article>
+        <article class="message is-medium is-success ">
+          <div class="message-header">
+            <p>Task 2</p>
+            <p>Deadline: 00/00/0000</p>
+          </div>
+          <div class="message-body">
+              <progress class="progress is-danger" value="15" max="100">15%</progress>
+              <div class="team-member-container">
+                <img class="team-member-icon" src="bot.png"></img>
+                <img class="team-member-icon" src="bot.png"></img>
+              </div>
+          </div>
+        </article>
+        <article class="message is-medium is-success">
+          <div class="message-header">
+            <p>Task 3</p>
+            <p>Deadline: 00/00/0000</p>
+          </div>
+          <div class="message-body">
+              <progress class="progress is-warning" value="50" max="100">50%</progress>
+              <div class="team-member-container">
+                <img class="team-member-icon" src="bot.png"></img>
+                <img class="team-member-icon" src="bot.png"></img>
+                <img class="team-member-icon" src="bot.png"></img>
+                <img class="team-member-icon" src="bot.png"></img>
+              </div>
+          </div>
+        </article>
+    </div>
+</body>
