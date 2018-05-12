@@ -36,12 +36,39 @@
         .team-member-icon {
             height: 2em;
             width: 2em;
-            radius: 100%;
+            border-radius: 30%;
+        }
+
+        .task-creator {
+            border: 2px solid black;
         }
 
         .message-body {
             display: flex;
             justify-content: space-between;
+        }
+
+        .message-body-left {
+            max-width: 50%;
+        }
+
+        .message-body-right {
+            max-width: 100%;
+        }
+
+        .message-body-left p {
+            font-size: .8em;
+            margin-bottom: 1em;
+        }
+
+        .panel-heading {
+            font-size: 1.2em !important;
+            margin-bottom: 0 !important;
+
+        }
+
+        .task-dependencies-container p {
+            align-self: flex-start;
         }
     </style>
 </head>
@@ -58,20 +85,7 @@
           <div class="message-body">
               <progress class="progress is-success" value="90" max="100">90%</progress>
               <div class="team-member-container">
-                <img class="team-member-icon" src="bot.png"></img>
-                <img class="team-member-icon" src="bot.png"></img>
-                <img class="team-member-icon" src="bot.png"></img>
-              </div>
-          </div>
-        </article>
-        <article class="message is-medium is-success ">
-          <div class="message-header">
-            <p>Task 2</p>
-            <p>Deadline: 00/00/0000</p>
-          </div>
-          <div class="message-body">
-              <progress class="progress is-danger" value="15" max="100">15%</progress>
-              <div class="team-member-container">
+                <img class="team-member-icon task-creator" src="bot.png"></img>
                 <img class="team-member-icon" src="bot.png"></img>
                 <img class="team-member-icon" src="bot.png"></img>
               </div>
@@ -79,13 +93,65 @@
         </article>
         <article class="message is-medium is-success">
           <div class="message-header">
+            <p>Task 2</p>
+            <p>Deadline: 00/00/0000</p>
+          </div>
+          <div class="message-body">
+            <div class="message-body-left">
+                <p>Has closed eyes but still sees you kitty poochy, but need to chase tail ignore the human until she needs to get up, then climb on her lap and sprawl swat turds around the house with tail in the air. Pretend you want to go out but then don't rub whiskers on bare skin act innocent or purr while eating, for mice, meowzer.
+                </p>
+                <nav class="panel">
+                    <p class="panel-heading">
+                      Task Progress
+                    </p>
+                    <div class="panel-block">
+                        <label class="checkbox">
+                          <input type="checkbox">
+                          Item 1
+                        </label>
+                    </div>
+                    <div class="panel-block">
+                        <label class="checkbox">
+                          <input type="checkbox">
+                          Item 2
+                        </label>
+                    </div>
+                </nav>
+            </div>
+            <div class="message-body-right">
+                <div class="team-member-container">
+                  <img class="team-member-icon task-creator" src="bot.png"></img>
+                  <img class="team-member-icon" src="bot.png"></img>
+                </div>
+                <div class="task-dependencies-container">
+                    <p>Task Dependencies: </p>
+                     <progress class="progress is-success" value="90" max="100">90%</progress>
+                </div>
+            </div>
+          </div>
+        </article>
+        <article class="message is-medium is-success ">
+          <div class="message-header">
             <p>Task 3</p>
+            <p>Deadline: 00/00/0000</p>
+          </div>
+          <div class="message-body">
+              <progress class="progress is-danger" value="15" max="100">15%</progress>
+              <div class="team-member-container">
+                <img class="team-member-icon task-creator" src="bot.png"></img>
+                <img class="team-member-icon" src="bot.png"></img>
+              </div>
+          </div>
+        </article>
+        <article class="message is-medium is-success">
+          <div class="message-header">
+            <p>Task 4</p>
             <p>Deadline: 00/00/0000</p>
           </div>
           <div class="message-body">
               <progress class="progress is-warning" value="50" max="100">50%</progress>
               <div class="team-member-container">
-                <img class="team-member-icon" src="bot.png"></img>
+                <img class="team-member-icon task-creator" src="bot.png"></img>
                 <img class="team-member-icon" src="bot.png"></img>
                 <img class="team-member-icon" src="bot.png"></img>
                 <img class="team-member-icon" src="bot.png"></img>
