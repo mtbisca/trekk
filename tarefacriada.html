@@ -14,7 +14,6 @@
         .chat-container {
             width: 25%;
             margin-top: 2em;
-            display: none;
         }
 
         .cards-container {
@@ -25,6 +24,7 @@
         .form-container{
             width: 25%;
             margin-top: 2em;
+            display: none;
         }
 
         .message {
@@ -244,7 +244,7 @@
     </a>
   </div>
      <div class="navbar-end">
-      <a class="navbar-item is-pulled-right">
+      <a class="navbar-item is-pulled-right" href='criartarefa.html'>
         <span class="icon ">
           <i class="fas fa-plus-square fa-2x" aria-hidden="true"></i>
         </span>
@@ -334,15 +334,42 @@
               </div>
           </div>
         </article>
-        <!-- <article class="message is-medium is-success">
+        <article class="message is-medium is-success ">
+          <div class="message-header">
+            <p>Task 3</p>
+            <p>Deadline: 00/00/0000</p>
+          </div>
+          <div class="message-body">
+              <progress class="progress is-danger" value="15" max="100">15%</progress>
+              <div class="team-member-container">
+                <img class="team-member-icon task-creator" src="bot.png"></img>
+                <img class="team-member-icon" src="bot.png"></img>
+              </div>
+          </div>
+        </article>
+        <article class="message is-medium is-success">
+          <div class="message-header">
+            <p>Task 4</p>
+            <p>Deadline: 00/00/0000</p>
+          </div>
+          <div class="message-body">
+              <progress class="progress is-warning" value="50" max="100">50%</progress>
+              <div class="team-member-container">
+                <img class="team-member-icon task-creator" src="bot.png"></img>
+                <img class="team-member-icon" src="bot.png"></img>
+                <img class="team-member-icon" src="bot.png"></img>
+                <img class="team-member-icon" src="bot.png"></img>
+              </div>
+          </div>
+        </article>
+        <article class="message is-medium is-success">
           <div class="message-header">
             <p>Task 2</p>
             <p>Deadline: 00/00/0000</p>
           </div>
           <div class="message-body is-expanded">
             <div class="message-body-left">
-                <p>Has closed eyes but still sees you kitty poochy, but need to chase tail ignore the human until she needs to get up, then climb on her lap and sprawl swat turds around the house with tail in the air. Pretend you want to go out but then don't rub whiskers on bare skin act innocent or purr while eating, for mice, meowzer.
-                </p>
+                <p>Texto da tarefa aqui</p>
                 <nav class="panel">
                     <p class="panel-heading">
                       Task Progress
@@ -382,61 +409,33 @@
             </div>
           </div>
         </article>
-         --><article class="message is-medium is-success ">
-          <div class="message-header">
-            <p>Task 3</p>
-            <p>Deadline: 00/00/0000</p>
-          </div>
-          <div class="message-body">
-              <progress class="progress is-danger" value="15" max="100">15%</progress>
-              <div class="team-member-container">
-                <img class="team-member-icon task-creator" src="bot.png"></img>
-                <img class="team-member-icon" src="bot.png"></img>
-              </div>
-          </div>
-        </article>
-        <article class="message is-medium is-success">
-          <div class="message-header">
-            <p>Task 4</p>
-            <p>Deadline: 00/00/0000</p>
-          </div>
-          <div class="message-body">
-              <progress class="progress is-warning" value="50" max="100">50%</progress>
-              <div class="team-member-container">
-                <img class="team-member-icon task-creator" src="bot.png"></img>
-                <img class="team-member-icon" src="bot.png"></img>
-                <img class="team-member-icon" src="bot.png"></img>
-                <img class="team-member-icon" src="bot.png"></img>
-              </div>
-          </div>
-        </article>
-
+        
     </div>
   <div class="form-container">
         <article class="message is-medium is-success">
         <div class="message-header">
-          <p>New Task</p>
+          <p>Nova Task</p>
         </div>
             <div class="message-body">
                 <div class="field">
-                    <label class="label">Title</label>
+                    <label class="label">Titulo</label>
                         <div class="control">
-                            <input class="input" type="text" placeholder="Type task name">
+                            <input class="input" type="text" placeholder="digite o nome da tarefa">
                         </div>
                 </div>
                 <div class="field">
 
-    <label class="label">Description</label>
+    <label class="label">Descriçao</label>
   <div class="field-body">
     <div class="field">
       <div class="control">
-        <textarea class="textarea" placeholder="Task Description"></textarea>
+        <textarea class="textarea" placeholder="Descriçao da tarefa"></textarea>
       </div>
     </div>
   </div>
 </div>
 
-<label class="label">Members</label>
+<label class="label">Membros</label>
 <div class="field has-addons">
   <div class="control is-expanded">
     <div class="select is-fullwidth">
@@ -454,7 +453,7 @@
     <button type="submit" class="button is-primary">Choose</button>
   </div>
 </div>
-    <label class="label">Dependencies</label>
+    <label class="label">Dependencias</label>
 <div class="field has-addons">
   <div class="control is-expanded">
     <div class="select is-fullwidth">
@@ -475,8 +474,7 @@
                         </div>
                 </div>
                 <div class="control">
-  <a href='tarefacriada.html' style="text-decoration: none;"><button class="button is-primary">Create</button></a>
-  <a href='index.html' style='text-decoration: none;'><button class="button is-danger">Cancel</button></a>
+  <button class="button is-primary">Criar</button>
 </div>
         </div>
 
