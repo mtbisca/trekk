@@ -180,13 +180,14 @@
 		.chat-form {
 			margin-top: 20px;
 			display: flex;
-			align-items: flex-start;
+			align-items: center;
+			flex-direction: column;
 		}
 
 		.chat-form textarea {
 			background: #fbfbfb;
 			width: 75%;
-			height: 100px;
+			height: 50px;
 			border: 2px solid #eee;
 			border-radius: 3px;
 			resize: none;
@@ -199,7 +200,7 @@
 			background: #fff;
 		}
 
-		.chat-form button {
+		/* .chat-form button {
 			background: #23d160;
 			padding: 5px 15px;
 			font-size: .8em;
@@ -213,6 +214,10 @@
 			-webkit-transaction: background .2s ease;
 			-moz-transaction: backgroud .2s ease;
 			-o-transaction: backgroud .2s ease;
+		} */
+
+		.chat-form .control {
+			width: 75%;
 		}
 
 		.chat-form button:hover {
@@ -286,7 +291,7 @@
                         <div class="user-photo"></div>
                         <p class="chat-message">To travado em uma dependência que depende dele</p>
                     </div>
-		    <div class="chat friend">
+		    						<div class="chat friend">
                         <div class="user-photo"></div>
                         <p class="chat-message">Cara vc sabe do Joãozinho?</p>
                     </div>
@@ -302,11 +307,13 @@
                         <div class="user-photo"></div>
                         <p class="chat-message">To travado em uma dependência que depende dele</p>
                     </div>
-		  </div>
+		  					</div>
                 <div class="chat-form">
                     <textarea></textarea>
-                    <button>Send</button>
-                </div>
+										<div class="control">
+										  <button class="button is-primary is-fullwidth">Enviar</button>
+										</div>
+								</div>
             </div>
       </article>
     </div>
