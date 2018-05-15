@@ -86,7 +86,7 @@
 	border: none;
 	margin: 0 10px;
 	border-radius: 3px;
-	box-shadow: 0 3px 0 #1cb251;
+	box-shadow: 0 3px 0 #21c45b;
 	cursor: pointer;
 
 	-webkit-transaction: background .2s ease;
@@ -95,5 +95,5 @@
 }
 
 .chat-form button:hover {
-	background: #13c8d9;
+	background: #1fc158;
 }
