@@ -1,2 +1,2 @@
 # trekk
-MC436
+Mockup for MC426 discipline project. (Unicamp, Engenharia de Software)
