@@ -331,7 +331,7 @@
 					<progress class="progress is-success" v-bind:value="task.progress" max="100">90%</progress>
 					<div v-show="task.isExpanded">
 						<p>{{task.description}}</p>
-						<nav class="panel">
+						<nav class="panel" v-show="task.checklistItems.length > 0">
 							<p class="panel-heading">
 								Task Progress
 							</p>
@@ -350,7 +350,7 @@
 	          <img class="team-member-icon" src="bot.png" v-for="i in task.members - 1"></img>
 	        </div>
 					<div class="task-dependencies-container" v-show="task.isExpanded">
-						<nav class="panel">
+						<nav class="panel" v-show="task.dependencies.length > 0">
 							<p class="panel-heading">Task Dependencies: </p>
 							<div class="task-dependencie panel-block" v-for="dep in task.dependencies">
 							 <p>{{dep}}</p>
