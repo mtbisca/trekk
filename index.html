@@ -321,8 +321,8 @@
     </article>
   </div>
   <div class="cards-container">
-    <article class="message is-medium is-success" v-for="task in tasks" v-on:click="toggleExpandClass(task)">
-      <div class="message-header">
+    <article class="message is-medium is-success" v-for="task in tasks">
+      <div class="message-header" v-on:click="toggleExpandClass(task)">
         <p>{{task.title}}</p>
         <p>Deadline: {{task.deadline}}</p>
       </div>
@@ -337,7 +337,7 @@
 							</p>
 							<div class="panel-block" v-for="item in task.checklistItems">
 								<label class="checkbox">
-									<input type="checkbox">
+									<input type="checkbox" v-bind:value="item" v-model="task.checkedItems" @change="calculateProgress(task)">
 									{{item}}
 								</label>
 							</div>
@@ -408,7 +408,6 @@
               <div class="select is-fullwidth">
                 <select name="country">
                   <option value="Task1">Task1</option>
-
                 </select>
               </div>
             </div>
@@ -426,7 +425,6 @@
             <button class="button is-primary">Criar</button>
           </div>
         </div>
-
       </article>
     </div>
 		</div>
@@ -447,6 +445,7 @@
 								dependencies: ["task1", "task2"],
 								members: 3,
 								checklistItems: ["a", "b", "c"],
+								checkedItems: [],
 								isExpanded: false
 							},
 							{
@@ -458,6 +457,7 @@
 								dependencies: [],
 								members: 2,
 								checklistItems: [],
+								checkedItems: [],
 								isExpanded: false
 
 							},
@@ -471,6 +471,7 @@
 								creator: 0,
 								members: 4,
 								checklistItems: [],
+								checkedItems: [],
 								isExpanded: false
 							}
 						]
@@ -478,6 +479,9 @@
 				methods: {
 					"toggleExpandClass": function (task) {
 						task.isExpanded = !task.isExpanded;
+					},
+					"calculateProgress": function (task) {
+						task.progress = task.checkedItems.length * 100 / task.checklistItems.length ;
 					}
 				}
 			});
