@@ -352,9 +352,9 @@
 					<div class="task-dependencies-container" v-show="task.isExpanded">
 						<nav class="panel" v-show="task.dependencies.length > 0">
 							<p class="panel-heading">Task Dependencies: </p>
-							<div class="task-dependencie panel-block" v-for="dep in task.dependencies">
-							 <p>{{dep}}</p>
-							 <progress class="progress" value="90" max="100">90%</progress>
+							<div class="task-dependencie panel-block" v-for="id in task.dependencies">
+							 <p>{{getDependencieTitle(id)}}</p>
+							 <progress v-bind:class="getDependencieProgressClasses(id)" v-bind:value="getDependencieProgress(id)" max="100">90%</progress>
 						 </div>
 					 </nav>
 				 </div>
@@ -402,7 +402,7 @@
               <button type="submit" class="button is-primary">Choose</button>
             </div>
           </div>
-          <label class="label">Dependencias</label>
+          <label class="label">Dependencies</label>
           <div class="field has-addons">
             <div class="control is-expanded">
               <div class="select is-fullwidth">
@@ -443,9 +443,9 @@
 								deadline: "00/00/0000",
 								progress: 90,
 								progressClasses: ["progress", "is-success"],
-								dependencies: ["task1", "task2"],
+								dependencies: [1, 2],
 								members: 3,
-								checklistItems: ["a", "b", "c"],
+								checklistItems: ["a", "b", "c", "d"],
 								checkedItems: [],
 								isExpanded: false
 							},
@@ -455,7 +455,7 @@
 								description: "description task 1",
 								deadline: "00/00/0000",
 								progress: 50,
-								progressClasses: ["progress", "is-success"],
+								progressClasses: ["progress", "is-warning"],
 								dependencies: [],
 								members: 2,
 								checklistItems: [],
@@ -469,7 +469,7 @@
 								description: "description task 1",
 								deadline: "00/00/0000",
 								progress: 30,
-								progressClasses: ["progress", "is-success"],
+								progressClasses: ["progress", "is-danger"],
 								dependencies: [],
 								creator: 0,
 								members: 4,
@@ -489,12 +489,33 @@
 					},
 					"setProgressClass": function (task) {
 						task.progressClasses.pop();
-						if(task.progress < 30) {
+						if(task.progress < 34) {
 							task.progressClasses.push("is-danger");
-						} else if (task.progress < 60) {
+						} else if (task.progress < 67) {
 							task.progressClasses.push("is-warning");
 						} else {
 							task.progressClasses.push("is-success");
+						}
+					},
+					"getDependencieTitle": function (id) {
+						for (let i = 0; i < this.tasks.length; i++) {
+							if (this.tasks[i].id == id) {
+								return this.tasks[i].title;
+							}
+						}
+					},
+					"getDependencieProgress": function (id) {
+						for (let i = 0; i < this.tasks.length; i++) {
+							if (this.tasks[i].id == id) {
+								return this.tasks[i].progress;
+							}
+						}
+					},
+					"getDependencieProgressClasses": function (id) {
+						for (let i = 0; i < this.tasks.length; i++) {
+							if (this.tasks[i].id == id) {
+								return this.tasks[i].progressClasses;
+							}
 						}
 					}
 				}
