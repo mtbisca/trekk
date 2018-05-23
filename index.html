@@ -1,308 +1,308 @@
 <!DOCTYPE html>
 <head>
-	<title>Trekk</title>
-	<link rel="shortcut icon" type="image/png" href="./TrekkLogo.png"/>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
+  <title>Trekk</title>
+  <link rel="shortcut icon" type="image/png" href="./TrekkLogo.png"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
   <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
   <meta charset="utf-8">
   <style>
-		#app {
-		  display: flex;
-		}
-		.navbar{
-		  width: 100%;
-		}
-		.chat-container {
-		  width: 25%;
-		  margin-top: 2em;
-		}
+    #app {
+      display: flex;
+    }
+    .navbar{
+      width: 100%;
+    }
+    .chat-container {
+      width: 25%;
+      margin-top: 2em;
+    }
 
-		.cards-container {
-		  width: 75%;
-		  min-width: 50%;
-		  margin-top: 2em;
-		}
-		.form-container{
-		  width: 25%;
-		  margin-top: 2em;
-		}
+    .cards-container {
+      width: 75%;
+      min-width: 50%;
+      margin-top: 2em;
+    }
+    .form-container{
+      width: 25%;
+      margin-top: 2em;
+    }
 
-		.message {
-		  margin: 2em;
-		}
+    .message {
+      margin: 2em;
+    }
 
-		.chat-container .message {
-		  height: 100%;
-		  margin-right: 1em;
-		}
+    .chat-container .message {
+      height: 100%;
+      margin-right: 1em;
+    }
 
-		.cards-container .message {
-		  margin-left: 1em;
-		}
+    .cards-container .message {
+      margin-left: 1em;
+    }
 
-		.form-container .message{
-		  margin-left: 1em;
-		}
+    .form-container .message{
+      margin-left: 1em;
+    }
 
-		.progress {
-		  width: 100%;
-		  display: inline-block;
-		}
+    .progress {
+      width: 100%;
+      display: inline-block;
+    }
 
-		.message-header {
-		  display: flex;
-		  justify-content: space-between;
-		}
+    .message-header {
+      display: flex;
+      justify-content: space-between;
+    }
 
-		.cards-container .message-header {
-			cursor: pointer;
-		}
+    .cards-container .message-header {
+      cursor: pointer;
+    }
 
-		.team-member-icon {
-		  height: 2em;
-		  width: 2em;
-		  border-radius: 30%;
-		}
+    .team-member-icon {
+      height: 2em;
+      width: 2em;
+      border-radius: 30%;
+    }
 
-		.task-creator {
-		  border: 2px solid black;
-		}
+    .task-creator {
+      border: 2px solid black;
+    }
 
-		.cards-container .message-body {
-		  display: flex;
-		  justify-content: space-between;
-		}
+    .cards-container .message-body {
+      display: flex;
+      justify-content: space-between;
+    }
 
-		.is-expanded {
-		  justify-content: flex-start;
-		}
+    .is-expanded {
+      justify-content: flex-start;
+    }
 
-		.message-body-left {
-		  width: 50%;
-		}
+    .message-body-left {
+      width: 50%;
+    }
 
-		.message-body-right {
-		  margin-left: 3em;
-		  width: 50%;
-		}
-		.message-body-left p {
-		  font-size: .8em;
-		  margin-bottom: 1em;
-		}
+    .message-body-right {
+      margin-left: 3em;
+      width: 50%;
+    }
+    .message-body-left p {
+      font-size: .8em;
+      margin-bottom: 1em;
+    }
 
-		.message-body-right .team-member-container {
-		  display: flex;
-		  justify-content: flex-end;
-		}
+    .message-body-right .team-member-container {
+      display: flex;
+      justify-content: flex-end;
+    }
 
-		.panel-heading {
-		  font-size: 1.2em !important;
-		  margin-bottom: 0 !important;
+    .panel-heading {
+      font-size: 1.2em !important;
+      margin-bottom: 0 !important;
 
-		}
+    }
 
-		.task-dependencies-container {
-		  margin-top: 1em;
-		}
+    .task-dependencies-container {
+      margin-top: 1em;
+    }
 
-		.task-dependencies-container p {
-		  align-self: flex-start;
-		}
+    .task-dependencies-container p {
+      align-self: flex-start;
+    }
 
-		.task-dependencie {
-		  display: flex;
-		  align-items: center;
-		}
+    .task-dependencie {
+      display: flex;
+      align-items: center;
+    }
 
-		.task-dependencie p {
-		  font-size: .8em;
-		  display: inline-block;
-		  width: 48%;
-		  margin-right: 0.6em;
-		}
+    .task-dependencie p {
+      font-size: .8em;
+      display: inline-block;
+      width: 48%;
+      margin-right: 0.6em;
+    }
 
-		.task-dependencie progress {
-		  display: inline-block;
-		  width: 50%;
-		}
-		.chatbox {
-		  width: 100%;
-		  height: 100%;
-		  padding: 0px;
-		  margin: 0px auto;
-		  box-shadow: 0 3px #ccc;
-		}
+    .task-dependencie progress {
+      display: inline-block;
+      width: 50%;
+    }
+    .chatbox {
+      width: 100%;
+      height: 100%;
+      padding: 0px;
+      margin: 0px auto;
+      box-shadow: 0 3px #ccc;
+    }
 
-		.chatlogs {
-		  padding: 10px;
-		  width: 100%;
-		  height: 450px;
-		  overflow-x: hidden;
-		  overflow-y: scroll;
-		}
+    .chatlogs {
+      padding: 10px;
+      width: 100%;
+      height: 450px;
+      overflow-x: hidden;
+      overflow-y: scroll;
+    }
 
-		.chatlogs::-webkit-scrollbar {
-		  width: 10px;
-		}
+    .chatlogs::-webkit-scrollbar {
+      width: 10px;
+    }
 
-		.chatlogs::-webkit-scrollbar-thumb {
-		  border-radius: 5px;
-		  background: rgba(0,0,0,.1);
-		}
+    .chatlogs::-webkit-scrollbar-thumb {
+      border-radius: 5px;
+      background: rgba(0,0,0,.1);
+    }
 
-		.chat {
-		  display: flex;
-		  flex-flow: row wrap;
-		  align-items: flex-start;
-		  margin-bottom: 10px;
-		}
+    .chat {
+      display: flex;
+      flex-flow: row wrap;
+      align-items: flex-start;
+      margin-bottom: 10px;
+    }
 
 
-		.chat .user-photo {
-		  width: 15px;
-		  height: 15px;
-		  background: #ccc;
-		  border-radius: 50%;
-		}
+    .chat .user-photo {
+      width: 15px;
+      height: 15px;
+      background: #ccc;
+      border-radius: 50%;
+    }
 
-		.chat .chat-message {
-		  width: 80%;
-		  padding: 15px;
-		  margin: 5px 10px 0;
-		  border-radius: 10px;
-		  color: #fff;
-		  font-size: .8em;
-		}
+    .chat .chat-message {
+      width: 80%;
+      padding: 15px;
+      margin: 5px 10px 0;
+      border-radius: 10px;
+      color: #fff;
+      font-size: .8em;
+    }
 
-		.friend .chat-message {
-		 background: #1adda4;
-		}
+    .friend .chat-message {
+     background: #1adda4;
+    }
 
-		.self .chat-message {
-		  background: #1ddced;
-		  order: -1;
-		}
+    .self .chat-message {
+      background: #1ddced;
+      order: -1;
+    }
 
-		.chat-form {
-		  margin-top: 20px;
-		  display: flex;
-		  align-items: center;
-		  flex-direction: column;
-		}
+    .chat-form {
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+    }
 
-		.chat-form textarea {
-		  background: #fbfbfb;
-		  width: 75%;
-		  height: 50px;
-		  border: 2px solid #eee;
-		  border-radius: 3px;
-		  resize: none;
-		  padding: 10px;
-		  font-size: .8em;
-		  color: #333;
-		}
+    .chat-form textarea {
+      background: #fbfbfb;
+      width: 75%;
+      height: 50px;
+      border: 2px solid #eee;
+      border-radius: 3px;
+      resize: none;
+      padding: 10px;
+      font-size: .8em;
+      color: #333;
+    }
 
-		.chat-form textarea:focus {
-		  background: #fff;
-		}
+    .chat-form textarea:focus {
+      background: #fff;
+    }
 
-		.chat-form .control {
-		  width: 75%;
-		}
+    .chat-form .control {
+      width: 75%;
+    }
 
-		.chat-form button:hover {
-		  background: #13c8d9;
-		}
+    .chat-form button:hover {
+      background: #13c8d9;
+    }
 
-		.trekk-title {
-		  color: white;
-		  margin-left: .5em;
-		  font-style: helvetica;
-		  font-weight: bold;
-		  font-size: 1.5em;
-		}
+    .trekk-title {
+      color: white;
+      margin-left: .5em;
+      font-style: helvetica;
+      font-weight: bold;
+      font-size: 1.5em;
+    }
   </style>
 </head>
 <body>
-	<div id="app">
-	  <nav class="navbar is-fixed-top is-success" role="navigation" aria-label="main navigation">
-	    <div class="navbar-brand">
-	      <a class="navbar-item" @click="() => this.inCreateMode = false">
-	        <img src="./TrekkLogo.png" alt="Welcome to Trekk!">
-	        <p class="trekk-title">Trekk</p>
-	      </a>
-	    </div>
-	    <div class="navbar-end">
-	      <a class="navbar-item is-pulled-right" v-show="!inCreateMode">
-	        <span class="icon" @click="toggleCreateMode()">
-	          <i class="fas fa-plus-square fa-2x" aria-hidden="true"></i>
-	        </span>
-	      </a>
-	    </div>
-	  </nav>
-  	<div class="chat-container" v-show="!inCreateMode">
-    	<article class="message is-medium is-success">
-      	<div class="message-header">
-        	<p>Chat</p>
-      	</div>
-      	<div class="chatbox">
-        	<div class="chatlogs">
-          	<div v-bind:class="message.owner" v-for="message in messages">
-            	<div class="user-photo"></div>
-            	<p class="chat-message">{{message.text}}</p>
-          	</div>
-        	</div>
-        	<div class="chat-form">
-          	<textarea v-model="newMessageText"></textarea>
-          	<div class="control">
-            	<button class="button is-primary is-fullwidth" @click="sendMessage()">Enviar</button>
-          	</div>
-        	</div>
-      	</div>
-    	</article>
-  	</div>
-  	<div class="cards-container">
-    	<article class="message is-medium is-success" v-for="task in tasks">
-      	<div class="message-header" v-on:click="toggleExpandClass(task)">
-        	<p>{{task.title}}</p>
-        	<p>Deadline: {{task.deadline}}</p>
-      	</div>
-      	<div class="message-body">
-					<div class="message-body-left">
-						<progress v-bind:class="task.progressClasses" v-bind:value="task.progress" max="100">90%</progress>
-						<div v-show="task.isExpanded">
-							<p>{{task.description}}</p>
-							<nav class="panel" v-show="task.checklistItems.length > 0">
-								<p class="panel-heading">
-									Task Progress
-								</p>
-								<div class="panel-block" v-for="item in task.checklistItems">
-									<label class="checkbox">
-										<input type="checkbox" v-bind:value="item" v-model="task.checkedItems" @change="calculateProgress(task)">
-										{{item}}
-									</label>
-								</div>
-							</nav>
-						</div>
-					</div>
-					<div class="message-body-right">
-						<div class="team-member-container">
-	          	<img class="team-member-icon task-creator" src="bot.png"></img>
-	          	<img class="team-member-icon" src="bot.png" v-for="i in task.members - 1"></img>
-	        	</div>
-						<div class="task-dependencies-container" v-show="task.isExpanded">
-							<nav class="panel" v-show="task.dependencies.length > 0">
-								<p class="panel-heading">Task Dependencies: </p>
-								<div class="task-dependencie panel-block" v-for="id in task.dependencies">
-							 		<p>{{getDependencieTitle(id)}}</p>
-							 		<progress v-bind:class="getDependencieProgressClasses(id)" v-bind:value="getDependencieProgress(id)" max="100">90%</progress>
-						 		</div>
-					 		</nav>
-				 		</div>
-      		</div>
-				</div>
-    	</article>
-		</div>
+  <div id="app">
+    <nav class="navbar is-fixed-top is-success" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a class="navbar-item" @click="() => this.inCreateMode = false">
+          <img src="./TrekkLogo.png" alt="Welcome to Trekk!">
+          <p class="trekk-title">Trekk</p>
+        </a>
+      </div>
+      <div class="navbar-end">
+        <a class="navbar-item is-pulled-right" v-show="!inCreateMode">
+          <span class="icon" @click="toggleCreateMode()">
+            <i class="fas fa-plus-square fa-2x" aria-hidden="true"></i>
+          </span>
+        </a>
+      </div>
+    </nav>
+    <div class="chat-container" v-show="!inCreateMode">
+      <article class="message is-medium is-success">
+        <div class="message-header">
+          <p>Chat</p>
+        </div>
+        <div class="chatbox">
+          <div class="chatlogs">
+            <div v-bind:class="message.owner" v-for="message in messages">
+              <div class="user-photo"></div>
+              <p class="chat-message">{{message.text}}</p>
+            </div>
+          </div>
+          <div class="chat-form">
+            <textarea v-model="newMessageText"></textarea>
+            <div class="control">
+              <button class="button is-primary is-fullwidth" @click="sendMessage()">Enviar</button>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+    <div class="cards-container">
+      <article class="message is-medium is-success" v-for="task in tasks">
+        <div class="message-header" v-on:click="toggleExpandClass(task)">
+          <p>{{task.title}}</p>
+          <p>Deadline: {{task.deadline}}</p>
+        </div>
+        <div class="message-body">
+          <div class="message-body-left">
+            <progress v-bind:class="task.progressClasses" v-bind:value="task.progress" max="100">90%</progress>
+            <div v-show="task.isExpanded">
+              <p>{{task.description}}</p>
+              <nav class="panel" v-show="task.checklistItems.length > 0">
+                <p class="panel-heading">
+                  Task Progress
+                </p>
+                <div class="panel-block" v-for="item in task.checklistItems">
+                  <label class="checkbox">
+                    <input type="checkbox" v-bind:value="item" v-model="task.checkedItems" @change="calculateProgress(task)">
+                    {{item}}
+                  </label>
+                </div>
+              </nav>
+            </div>
+          </div>
+          <div class="message-body-right">
+            <div class="team-member-container">
+              <img class="team-member-icon task-creator" src="bot.png"></img>
+              <img class="team-member-icon" src="bot.png" v-for="i in task.members - 1"></img>
+            </div>
+            <div class="task-dependencies-container" v-show="task.isExpanded">
+              <nav class="panel" v-show="task.dependencies.length > 0">
+                <p class="panel-heading">Task Dependencies: </p>
+                <div class="task-dependencie panel-block" v-for="id in task.dependencies">
+                   <p>{{getDependencieTitle(id)}}</p>
+                   <progress v-bind:class="getDependencieProgressClasses(id)" v-bind:value="getDependencieProgress(id)" max="100">90%</progress>
+                 </div>
+               </nav>
+             </div>
+          </div>
+        </div>
+      </article>
+    </div>
     <div class="form-container" v-show="inCreateMode">
       <article class="message is-medium is-success">
         <div class="message-header">
@@ -328,21 +328,21 @@
 
           <label class="label">Membros</label>
           <nav class="panel">
-						<div class="panel-block" v-for="member in this.teamMembers">
-							<label class="checkbox">
-								<input type="checkbox" v-bind:value="member" v-model="createTaskData.checkedTeamMembers">
-								{{member}}
-							</label>
-						</div>
+            <div class="panel-block" v-for="member in this.teamMembers">
+              <label class="checkbox">
+                <input type="checkbox" v-bind:value="member" v-model="createTaskData.checkedTeamMembers">
+                {{member}}
+              </label>
+            </div>
           </nav>
           <label class="label">Dependencias</label>
-					<nav class="panel">
-						<div class="panel-block" v-for="task in this.tasks">
-							<label class="checkbox">
-								<input type="checkbox" v-bind:value="task.id" v-model="createTaskData.checkedDependencies">
-								{{task.title}}
-							</label>
-						</div>
+          <nav class="panel">
+            <div class="panel-block" v-for="task in this.tasks">
+              <label class="checkbox">
+                <input type="checkbox" v-bind:value="task.id" v-model="createTaskData.checkedDependencies">
+                {{task.title}}
+              </label>
+            </div>
           </nav>
           <div class="field">
             <label class="label">Deadline</label>
@@ -352,160 +352,161 @@
           </div>
           <div class="control">
             <button class="button is-primary" @click="createTask()">Criar</button>
+            <button class="button is-danger" @click="toggleCreateMode()">Cancel</button>
           </div>
         </div>
       </article>
     </div>
-	</div>
+  </div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
 <script>
-		let app = new Vue({
-			el: '#app',
-			data: {
-					tasks: [
-						{
-							id: 0,
-							title: "Task 1",
-							description: "description task 1",
-							deadline: "00/00/0000",
-							progress: 90,
-							progressClasses: ["progress", "is-success"],
-							dependencies: [1, 2],
-							members: 3,
-							checklistItems: ["a", "b", "c", "d"],
-							checkedItems: [],
-							isExpanded: false
-						},
-						{
-							id: 1,
-							title: "Task 2",
-							description: "description task 1",
-							deadline: "00/00/0000",
-							progress: 50,
-							progressClasses: ["progress", "is-warning"],
-							dependencies: [],
-							members: 2,
-							checklistItems: [],
-							checkedItems: [],
-							isExpanded: false
+    let app = new Vue({
+      el: '#app',
+      data: {
+          tasks: [
+            {
+              id: 0,
+              title: "Task 1",
+              description: "description task 1",
+              deadline: "00/00/0000",
+              progress: 90,
+              progressClasses: ["progress", "is-success"],
+              dependencies: [1, 2],
+              members: 3,
+              checklistItems: ["a", "b", "c", "d"],
+              checkedItems: [],
+              isExpanded: false
+            },
+            {
+              id: 1,
+              title: "Task 2",
+              description: "description task 1",
+              deadline: "00/00/0000",
+              progress: 50,
+              progressClasses: ["progress", "is-warning"],
+              dependencies: [],
+              members: 2,
+              checklistItems: [],
+              checkedItems: [],
+              isExpanded: false
 
-						},
-						{
-							id: 2,
-							title: "Task 1",
-							description: "description task 1",
-							deadline: "00/00/0000",
-							progress: 30,
-							progressClasses: ["progress", "is-danger"],
-							dependencies: [],
-							creator: 0,
-							members: 4,
-							checklistItems: [],
-							checkedItems: [],
-							isExpanded: false
-						}
-					],
-					messages: [
-						{
-							text: "Ow vc sabe do joaozinho?",
-							owner: ["chat", "self"]
-						},
-						{
-							text: "Sei nao",
-							owner: ["chat", "friend"]
-						},
-						{
-							text: "Pq?",
-							owner: ["chat", "friend"]
-						},
-						{
-							text: "To travado em uma dependencia dele",
-							owner: ["chat", "self"]
-						},
-					],
-					newMessageText: "",
-					teamMembers: ["Pedro", "João", "Maria"],
-					createTaskData: {
-						taskId: 3,
-						taskTitle: "",
-						taskDescription: "",
-						taskDeadline: "",
-						checkedTeamMembers: [],
-						checkedDependencies:[],
-					},
-					inCreateMode: false
-			},
-			methods: {
-				"toggleExpandClass": function (task) {
-					task.isExpanded = !task.isExpanded;
-				},
-				"calculateProgress": function (task) {
-					task.progress = task.checkedItems.length * 100 / task.checklistItems.length ;
-					this.setProgressClass(task);
-				},
-				"setProgressClass": function (task) {
-					task.progressClasses.pop();
-					if(task.progress < 34) {
-						task.progressClasses.push("is-danger");
-					} else if (task.progress < 67) {
-						task.progressClasses.push("is-warning");
-					} else {
-						task.progressClasses.push("is-success");
-					}
-				},
-				"getDependencieTitle": function (id) {
-					for (let i = 0; i < this.tasks.length; i++) {
-						if (this.tasks[i].id == id) {
-							return this.tasks[i].title;
-						}
-					}
-				},
-				"getDependencieProgress": function (id) {
-					for (let i = 0; i < this.tasks.length; i++) {
-						if (this.tasks[i].id == id) {
-							return this.tasks[i].progress;
-						}
-					}
-				},
-				"getDependencieProgressClasses": function (id) {
-					for (let i = 0; i < this.tasks.length; i++) {
-						if (this.tasks[i].id == id) {
-							return this.tasks[i].progressClasses;
-						}
-					}
-				},
+            },
+            {
+              id: 2,
+              title: "Task 1",
+              description: "description task 1",
+              deadline: "00/00/0000",
+              progress: 30,
+              progressClasses: ["progress", "is-danger"],
+              dependencies: [],
+              creator: 0,
+              members: 4,
+              checklistItems: [],
+              checkedItems: [],
+              isExpanded: false
+            }
+          ],
+          messages: [
+            {
+              text: "Ow vc sabe do joaozinho?",
+              owner: ["chat", "self"]
+            },
+            {
+              text: "Sei nao",
+              owner: ["chat", "friend"]
+            },
+            {
+              text: "Pq?",
+              owner: ["chat", "friend"]
+            },
+            {
+              text: "To travado em uma dependencia dele",
+              owner: ["chat", "self"]
+            },
+          ],
+          newMessageText: "",
+          teamMembers: ["Pedro", "João", "Maria"],
+          createTaskData: {
+            taskId: 3,
+            taskTitle: "",
+            taskDescription: "",
+            taskDeadline: "",
+            checkedTeamMembers: [],
+            checkedDependencies:[],
+          },
+          inCreateMode: false
+      },
+      methods: {
+        "toggleExpandClass": function (task) {
+          task.isExpanded = !task.isExpanded;
+        },
+        "calculateProgress": function (task) {
+          task.progress = task.checkedItems.length * 100 / task.checklistItems.length ;
+          this.setProgressClass(task);
+        },
+        "setProgressClass": function (task) {
+          task.progressClasses.pop();
+          if(task.progress < 34) {
+            task.progressClasses.push("is-danger");
+          } else if (task.progress < 67) {
+            task.progressClasses.push("is-warning");
+          } else {
+            task.progressClasses.push("is-success");
+          }
+        },
+        "getDependencieTitle": function (id) {
+          for (let i = 0; i < this.tasks.length; i++) {
+            if (this.tasks[i].id == id) {
+              return this.tasks[i].title;
+            }
+          }
+        },
+        "getDependencieProgress": function (id) {
+          for (let i = 0; i < this.tasks.length; i++) {
+            if (this.tasks[i].id == id) {
+              return this.tasks[i].progress;
+            }
+          }
+        },
+        "getDependencieProgressClasses": function (id) {
+          for (let i = 0; i < this.tasks.length; i++) {
+            if (this.tasks[i].id == id) {
+              return this.tasks[i].progressClasses;
+            }
+          }
+        },
 
-				"toggleCreateMode": function () {
-					this.inCreateMode = !this.inCreateMode;
-				},
+        "toggleCreateMode": function () {
+          this.inCreateMode = !this.inCreateMode;
+        },
 
-				"sendMessage": function () {
-					this.messages.push({
-						text: this.newMessageText,
-						owner: ["chat", "self"]
-					});
-					this.newMessageText = "";
-				},
+        "sendMessage": function () {
+          this.messages.push({
+            text: this.newMessageText,
+            owner: ["chat", "self"]
+          });
+          this.newMessageText = "";
+        },
 
-				"createTask": function () {
-					this.tasks.push({
-							id: this.createTaskData.taskId,
-							title: this.createTaskData.taskTitle,
-							description: this.createTaskData.taskDescription,
-							deadline: this.createTaskData.taskDeadline,
-							progress: 0,
-							progressClasses: ["progress", "is-danger"],
-							dependencies: this.createTaskData.checkedDependencies,
-							creator: 0,
-							members: this.createTaskData.checkedTeamMembers.length,
-							checklistItems: [],
-							checkedItems: [],
-							isExpanded: false
-					});
-					this.createTaskData.taskId++;
-					this.toggleCreateMode();
-				}
-			}
-		});
+        "createTask": function () {
+          this.tasks.push({
+              id: this.createTaskData.taskId,
+              title: this.createTaskData.taskTitle,
+              description: this.createTaskData.taskDescription,
+              deadline: this.createTaskData.taskDeadline,
+              progress: 0,
+              progressClasses: ["progress", "is-danger"],
+              dependencies: this.createTaskData.checkedDependencies,
+              creator: 0,
+              members: this.createTaskData.checkedTeamMembers.length,
+              checklistItems: [],
+              checkedItems: [],
+              isExpanded: false
+          });
+          this.createTaskData.taskId++;
+          this.toggleCreateMode();
+        }
+      }
+    });
 </script>
