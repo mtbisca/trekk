@@ -242,27 +242,15 @@
       	</div>
       	<div class="chatbox">
         	<div class="chatlogs">
-          	<div class="chat friend">
+          	<div v-bind:class="message.owner" v-for="message in messages">
             	<div class="user-photo"></div>
-            	<p class="chat-message">Cara vc sabe do Joãozinho?</p>
+            	<p class="chat-message">{{message.text}}</p>
           	</div>
-          	<div class="chat self">
-	            <div class="user-photo"></div>
-	            <p class="chat-message">Sei não</p>
-	          </div>
-	          <div class="chat self">
-	            <div class="user-photo"></div>
-	            <p class="chat-message">Pq?</p>
-	          </div>
-	          <div class="chat friend">
-	            <div class="user-photo"></div>
-	            <p class="chat-message">To travado em uma dependência que depende dele</p>
-	          </div>
         	</div>
         	<div class="chat-form">
-          	<textarea></textarea>
+          	<textarea v-model="newMessageText"></textarea>
           	<div class="control">
-            	<button class="button is-primary is-fullwidth">Enviar</button>
+            	<button class="button is-primary is-fullwidth" @click="sendMessage()">Enviar</button>
           	</div>
         	</div>
       	</div>
@@ -426,6 +414,25 @@
 							isExpanded: false
 						}
 					],
+					messages: [
+						{
+							text: "Ow vc sabe do joaozinho?",
+							owner: ["chat", "self"]
+						},
+						{
+							text: "Sei nao",
+							owner: ["chat", "friend"]
+						},
+						{
+							text: "Pq?",
+							owner: ["chat", "friend"]
+						},
+						{
+							text: "To travado em uma dependencia dele",
+							owner: ["chat", "self"]
+						},
+					],
+					newMessageText: "",
 					inCreateMode: false
 			},
 			methods: {
@@ -469,8 +476,14 @@
 				},
 
 				"toggleCreateMode": function () {
-					alert("I ran!")
 					this.inCreateMode = !this.inCreateMode;
+				},
+
+				"sendMessage": function () {
+					this.messages.push({
+						text: this.newMessageText,
+						owner: ["chat", "self"]
+					});
 				}
 			}
 		});
