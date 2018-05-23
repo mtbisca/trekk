@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <head>
 	<title>Trekk</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
+	<link rel="shortcut icon" type="image/png" href="./TrekkLogo.png"/>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
   <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
   <meta charset="utf-8">
   <style>
@@ -51,6 +52,10 @@
 		.message-header {
 		  display: flex;
 		  justify-content: space-between;
+		}
+
+		.cards-container .message-header {
+			cursor: pointer;
 		}
 
 		.team-member-icon {
@@ -217,18 +222,18 @@
 		  font-size: 1.5em;
 		}
   </style>
- </head>
- <body>
+</head>
+<body>
 	<div id="app">
 	  <nav class="navbar is-fixed-top is-success" role="navigation" aria-label="main navigation">
 	    <div class="navbar-brand">
-	      <a class="navbar-item" href="#">
+	      <a class="navbar-item" @click="() => this.inCreateMode = false">
 	        <img src="./TrekkLogo.png" alt="Welcome to Trekk!">
 	        <p class="trekk-title">Trekk</p>
 	      </a>
 	    </div>
 	    <div class="navbar-end">
-	      <a class="navbar-item is-pulled-right">
+	      <a class="navbar-item is-pulled-right" v-show="!inCreateMode">
 	        <span class="icon" @click="toggleCreateMode()">
 	          <i class="fas fa-plus-square fa-2x" aria-hidden="true"></i>
 	        </span>
@@ -307,7 +312,7 @@
           <div class="field">
             <label class="label">Titulo</label>
             <div class="control">
-              <input class="input" type="text" placeholder="digite o nome da tarefa">
+              <input class="input" type="text" placeholder="digite o nome da tarefa" v-model="createTaskData.taskTitle">
             </div>
           </div>
           <div class="field">
@@ -315,51 +320,38 @@
             <div class="field-body">
               <div class="field">
                 <div class="control">
-                  <textarea class="textarea" placeholder="Descriçao da tarefa"></textarea>
+                  <textarea class="textarea" placeholder="Descriçao da tarefa" v-model="createTaskData.taskDescription"></textarea>
                 </div>
               </div>
             </div>
           </div>
 
           <label class="label">Membros</label>
-          <div class="field has-addons">
-            <div class="control is-expanded">
-              <div class="select is-fullwidth">
-                <select name="country">
-                  <option value="Pedro">Pedro</option>
-                  <option value="Pedro">Pedro</option>
-                  <option value="Pedro">Pedro</option>
-                  <option value="Pedro">Pedro</option>
-                  <option value="Pedro">Pedro</option>
-                  <option value="Pedro">Pedro</option>
-                </select>
-              </div>
-            </div>
-            <div class="control">
-              <button type="submit" class="button is-primary">Choose</button>
-            </div>
-          </div>
-          <label class="label">Dependencies</label>
-          <div class="field has-addons">
-            <div class="control is-expanded">
-              <div class="select is-fullwidth">
-                <select name="country">
-                  <option value="Task1">Task1</option>
-                </select>
-              </div>
-            </div>
-            <div class="control">
-              <button type="submit" class="button is-primary">Choose</button>
-            </div>
-          </div>
+          <nav class="panel">
+						<div class="panel-block" v-for="member in this.teamMembers">
+							<label class="checkbox">
+								<input type="checkbox" v-bind:value="member" v-model="createTaskData.checkedTeamMembers">
+								{{member}}
+							</label>
+						</div>
+          </nav>
+          <label class="label">Dependencias</label>
+					<nav class="panel">
+						<div class="panel-block" v-for="task in this.tasks">
+							<label class="checkbox">
+								<input type="checkbox" v-bind:value="task.id" v-model="createTaskData.checkedDependencies">
+								{{task.title}}
+							</label>
+						</div>
+          </nav>
           <div class="field">
             <label class="label">Deadline</label>
             <div class="control">
-              <input class="input" type="text" placeholder="dd/mm/aaaa">
+              <input class="input" type="text" placeholder="dd/mm/aaaa" v-model="createTaskData.taskDeadline">
             </div>
           </div>
           <div class="control">
-            <button class="button is-primary" @click="toggleCreateMode()">Criar</button>
+            <button class="button is-primary" @click="createTask()">Criar</button>
           </div>
         </div>
       </article>
@@ -433,6 +425,15 @@
 						},
 					],
 					newMessageText: "",
+					teamMembers: ["Pedro", "João", "Maria"],
+					createTaskData: {
+						taskId: 3,
+						taskTitle: "",
+						taskDescription: "",
+						taskDeadline: "",
+						checkedTeamMembers: [],
+						checkedDependencies:[],
+					},
 					inCreateMode: false
 			},
 			methods: {
@@ -484,6 +485,26 @@
 						text: this.newMessageText,
 						owner: ["chat", "self"]
 					});
+					this.newMessageText = "";
+				},
+
+				"createTask": function () {
+					this.tasks.push({
+							id: this.createTaskData.taskId,
+							title: this.createTaskData.taskTitle,
+							description: this.createTaskData.taskDescription,
+							deadline: this.createTaskData.taskDeadline,
+							progress: 0,
+							progressClasses: ["progress", "is-danger"],
+							dependencies: this.createTaskData.checkedDependencies,
+							creator: 0,
+							members: this.createTaskData.checkedTeamMembers.length,
+							checklistItems: [],
+							checkedItems: [],
+							isExpanded: false
+					});
+					this.createTaskData.taskId++;
+					this.toggleCreateMode();
 				}
 			}
 		});
