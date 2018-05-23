@@ -5,7 +5,7 @@
   <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
   <meta charset="utf-8">
   <style>
-  body {
+  #app {
     display: flex;
   }
   .navbar{
@@ -45,7 +45,7 @@
   }
 
   .progress {
-    width: 30%;
+    width: 100%;
     display: inline-block;
   }
 
@@ -236,6 +236,7 @@
    </style>
  </head>
  <body>
+	<div id="app">
   <nav class="navbar is-fixed-top is-success" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
       <a class="navbar-item" href="#">
@@ -320,98 +321,45 @@
     </article>
   </div>
   <div class="cards-container">
-    <article class="message is-medium is-success">
+    <article class="message is-medium is-success" v-for="task in tasks" v-on:click="toggleExpandClass(task)">
       <div class="message-header">
-        <p>Task 1</p>
-        <p>Deadline: 00/00/0000</p>
+        <p>{{task.title}}</p>
+        <p>Deadline: {{task.deadline}}</p>
       </div>
       <div class="message-body">
-        <progress class="progress is-success" value="90" max="100">90%</progress>
-        <div class="team-member-container">
-          <img class="team-member-icon task-creator" src="bot.png"></img>
-          <img class="team-member-icon" src="bot.png"></img>
-          <img class="team-member-icon" src="bot.png"></img>
-        </div>
-      </div>
+				<div class="message-body-left">
+					<progress class="progress is-success" v-bind:value="task.progress" max="100">90%</progress>
+					<div v-show="task.isExpanded">
+						<p>{{task.description}}</p>
+						<nav class="panel">
+							<p class="panel-heading">
+								Task Progress
+							</p>
+							<div class="panel-block" v-for="item in task.checklistItems">
+								<label class="checkbox">
+									<input type="checkbox">
+									{{item}}
+								</label>
+							</div>
+						</nav>
+					</div>
+				</div>
+				<div class="message-body-right">
+					<div class="team-member-container">
+	          <img class="team-member-icon task-creator" src="bot.png"></img>
+	          <img class="team-member-icon" src="bot.png" v-for="i in task.members - 1"></img>
+	        </div>
+					<div class="task-dependencies-container" v-show="task.isExpanded">
+						<nav class="panel">
+							<p class="panel-heading">Task Dependencies: </p>
+							<div class="task-dependencie panel-block" v-for="dep in task.dependencies">
+							 <p>{{dep}}</p>
+							 <progress class="progress is-success" value="90" max="100">90%</progress>
+						 </div>
+					 </nav>
+				 </div>
+      	</div>
     </article>
-        <!-- <article class="message is-medium is-success">
-          <div class="message-header">
-            <p>Task 2</p>
-            <p>Deadline: 00/00/0000</p>
-          </div>
-          <div class="message-body is-expanded">
-            <div class="message-body-left">
-                <p>Has closed eyes but still sees you kitty poochy, but need to chase tail ignore the human until she needs to get up, then climb on her lap and sprawl swat turds around the house with tail in the air. Pretend you want to go out but then don't rub whiskers on bare skin act innocent or purr while eating, for mice, meowzer.
-                </p>
-                <nav class="panel">
-                    <p class="panel-heading">
-                      Task Progress
-                    </p>
-                    <div class="panel-block">
-                        <label class="checkbox">
-                          <input type="checkbox">
-                          Item 1
-                        </label>
-                    </div>
-                    <div class="panel-block">
-                        <label class="checkbox">
-                          <input type="checkbox">
-                          Item 2
-                        </label>
-                    </div>
-                </nav>
-            </div>
-            <div class="message-body-right">
-                <div class="team-member-container">
-                  <img class="team-member-icon task-creator" src="bot.png"></img>
-                  <img class="team-member-icon" src="bot.png"></img>
-                </div>
-                <div class="task-dependencies-container">
-                  <nav class="panel">
-                      <p class="panel-heading">Task Dependencies: </p>
-                      <div class="task-dependencie panel-block">
-                         <p>Lets pretend task 1 has like a really realy long name</p>
-                         <progress class="progress is-success" value="90" max="100">90%</progress>
-                      </div>
-                      <div class="task-dependencie panel-block">
-                         <p>Task 3</p>
-                         <progress class="progress is-danger" value="15" max="100">15%</progress>
-                      </div>
-                  </nav>
-                </div>
-            </div>
-          </div>
-        </article>
-      --><article class="message is-medium is-success ">
-        <div class="message-header">
-          <p>Task 3</p>
-          <p>Deadline: 00/00/0000</p>
-        </div>
-        <div class="message-body">
-          <progress class="progress is-danger" value="15" max="100">15%</progress>
-          <div class="team-member-container">
-            <img class="team-member-icon task-creator" src="bot.png"></img>
-            <img class="team-member-icon" src="bot.png"></img>
-          </div>
-        </div>
-      </article>
-      <article class="message is-medium is-success">
-        <div class="message-header">
-          <p>Task 4</p>
-          <p>Deadline: 00/00/0000</p>
-        </div>
-        <div class="message-body">
-          <progress class="progress is-warning" value="50" max="100">50%</progress>
-          <div class="team-member-container">
-            <img class="team-member-icon task-creator" src="bot.png"></img>
-            <img class="team-member-icon" src="bot.png"></img>
-            <img class="team-member-icon" src="bot.png"></img>
-            <img class="team-member-icon" src="bot.png"></img>
-          </div>
-        </div>
-      </article>
-
-    </div>
     <div class="form-container">
       <article class="message is-medium is-success">
         <div class="message-header">
@@ -481,4 +429,56 @@
 
       </article>
     </div>
+		</div>
+	</div>
   </body>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+	<script>
+			let app = new Vue({
+				el: '#app',
+				data: {
+						tasks: [
+							{
+								id: 0,
+								title: "Task 1",
+								description: "description task 1",
+								deadline: "00/00/0000",
+								progress: 90,
+								dependencies: ["task1", "task2"],
+								members: 3,
+								checklistItems: ["a", "b", "c"],
+								isExpanded: false
+							},
+							{
+								id: 1,
+								title: "Task 2",
+								description: "description task 1",
+								deadline: "00/00/0000",
+								progress: 50,
+								dependencies: [],
+								members: 2,
+								checklistItems: [],
+								isExpanded: false
+
+							},
+							{
+								id: 2,
+								title: "Task 1",
+								description: "description task 1",
+								deadline: "00/00/0000",
+								progress: 30,
+								dependencies: [],
+								creator: 0,
+								members: 4,
+								checklistItems: [],
+								isExpanded: false
+							}
+						]
+				},
+				methods: {
+					"toggleExpandClass": function (task) {
+						task.isExpanded = !task.isExpanded;
+					}
+				}
+			});
+	</script>
