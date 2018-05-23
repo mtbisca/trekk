@@ -328,7 +328,7 @@
       </div>
       <div class="message-body">
 				<div class="message-body-left">
-					<progress class="progress is-success" v-bind:value="task.progress" max="100">90%</progress>
+					<progress v-bind:class="task.progressClasses" v-bind:value="task.progress" max="100">90%</progress>
 					<div v-show="task.isExpanded">
 						<p>{{task.description}}</p>
 						<nav class="panel">
@@ -354,7 +354,7 @@
 							<p class="panel-heading">Task Dependencies: </p>
 							<div class="task-dependencie panel-block" v-for="dep in task.dependencies">
 							 <p>{{dep}}</p>
-							 <progress class="progress is-success" value="90" max="100">90%</progress>
+							 <progress class="progress" value="90" max="100">90%</progress>
 						 </div>
 					 </nav>
 				 </div>
@@ -442,6 +442,7 @@
 								description: "description task 1",
 								deadline: "00/00/0000",
 								progress: 90,
+								progressClasses: ["progress", "is-success"],
 								dependencies: ["task1", "task2"],
 								members: 3,
 								checklistItems: ["a", "b", "c"],
@@ -454,6 +455,7 @@
 								description: "description task 1",
 								deadline: "00/00/0000",
 								progress: 50,
+								progressClasses: ["progress", "is-success"],
 								dependencies: [],
 								members: 2,
 								checklistItems: [],
@@ -467,6 +469,7 @@
 								description: "description task 1",
 								deadline: "00/00/0000",
 								progress: 30,
+								progressClasses: ["progress", "is-success"],
 								dependencies: [],
 								creator: 0,
 								members: 4,
@@ -482,6 +485,17 @@
 					},
 					"calculateProgress": function (task) {
 						task.progress = task.checkedItems.length * 100 / task.checklistItems.length ;
+						this.setProgressClass(task);
+					},
+					"setProgressClass": function (task) {
+						task.progressClasses.pop();
+						if(task.progress < 30) {
+							task.progressClasses.push("is-danger");
+						} else if (task.progress < 60) {
+							task.progressClasses.push("is-warning");
+						} else {
+							task.progressClasses.push("is-success");
+						}
 					}
 				}
 			});
