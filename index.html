@@ -221,6 +221,16 @@
       font-weight: bold;
       font-size: 1.5em;
     }
+
+    #chat-dropdown-trigger button {
+      color: #ffffff;
+      background: #1fc158;
+      border-color: #1fc158;
+    }
+    #chat-dropdown-menu {
+    	min-width: 7rem;
+    }
+
   </style>
 </head>
 <body>
@@ -244,6 +254,27 @@
       <article class="message is-medium is-success">
         <div class="message-header">
           <p>Chat</p>
+	  <div class="dropdown is-right is-hoverable">
+  <div id="chat-dropdown-trigger" class="dropdown-trigger">
+    <button class="button" aria-haspopup="true" aria-controls="dropdown-menu4">
+      <span>Contacts</span>
+      <span class="icon is-small">
+        <i class="fas fa-angle-down" aria-hidden="true"></i>
+      </span>
+    </button>
+  </div>
+  <div class="dropdown-menu" id="chat-dropdown-menu" role="menu">
+    <div class="dropdown-content">
+      <div class="dropdown-item">
+	 <ul class="menu-list">
+	    <li><a>Pedro</a></li>
+	    <li><a>João</a></li>
+	    <li><a>Maria</a></li>
+	 </ul>      
+      </div>
+    </div>
+  </div>
+</div>
         </div>
         <div class="chatbox">
           <div class="chatlogs">
