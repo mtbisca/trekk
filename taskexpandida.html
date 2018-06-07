@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<head>
+	<title>Trekk</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+  <meta charset="utf-8">
+  <style>
+  body {
+    display: flex;
+  }
+  .navbar{
+    width: 100%;
+  }
+  .chat-container {
+    width: 25%;
+    margin-top: 2em;
+  }
+
+  .cards-container {
+    width: 75%;
+    min-width: 50%;
+    margin-top: 2em;
+  }
+  .form-container{
+    width: 25%;
+    margin-top: 2em;
+    display: none;
+  }
+
+  .message {
+    margin: 2em;
+  }
+
+  .chat-container .message {
+    height: 100%;
+    margin-right: 1em;
+  }
+
+  .cards-container .message {
+    margin-left: 1em;
+  }
+
+  .form-container .message{
+    margin-left: 1em;
+  }
+
+  .progress {
+    width: 30%;
+    display: inline-block;
+  }
+
+  .message-header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .team-member-icon {
+    height: 2em;
+    width: 2em;
+    border-radius: 30%;
+  }
+
+  .task-creator {
+    border: 2px solid black;
+  }
+
+  .cards-container .message-body {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .is-expanded {
+    justify-content: flex-start;
+  }
+
+  .message-body-left {
+    width: 50%;
+  }
+
+  .message-body-right {
+    margin-left: 3em;
+    width: 50%;
+  }
+  .message-body-left p {
+    font-size: .8em;
+    margin-bottom: 1em;
+  }
+
+  .message-body-right .team-member-container {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .panel-heading {
+    font-size: 1.2em !important;
+    margin-bottom: 0 !important;
+
+  }
+
+  .task-dependencies-container {
+    margin-top: 1em;
+  }
+
+  .task-dependencies-container p {
+    align-self: flex-start;
+  }
+
+  .task-dependencie {
+    display: flex;
+    align-items: center;
+  }
+
+  .task-dependencie p {
+    font-size: .8em;
+    display: inline-block;
+    width: 48%;
+    margin-right: 0.6em;
+  }
+
+  .task-dependencie progress {
+    display: inline-block;
+    width: 50%;
+  }
+  .chatbox {
+   width: 100%;
+   height: 100%;
+   padding: 0px;
+   margin: 0px auto;
+   box-shadow: 0 3px #ccc;
+ }
+
+ .chatlogs {
+   padding: 10px;
+   width: 100%;
+   height: 450px;
+   overflow-x: hidden;
+   overflow-y: scroll;
+ }
+
+ .chatlogs::-webkit-scrollbar {
+   width: 10px;
+ }
+
+ .chatlogs::-webkit-scrollbar-thumb {
+   border-radius: 5px;
+   background: rgba(0,0,0,.1);
+ }
+
+ .chat {
+   display: flex;
+   flex-flow: row wrap;
+   align-items: flex-start;
+   margin-bottom: 10px;
+ }
+
+
+ .chat .user-photo {
+   width: 15px;
+   height: 15px;
+   background: #ccc;
+   border-radius: 50%;
+ }
+
+ .chat .chat-message {
+   width: 80%;
+   padding: 15px;
+   margin: 5px 10px 0;
+   border-radius: 10px;
+   color: #fff;
+   font-size: .8em;
+ }
+
+ .friend .chat-message {
+   background: #1adda4;
+ }
+
+ .self .chat-message {
+   background: #1ddced;
+   order: -1;
+ }
+
+ .chat-form {
+   margin-top: 20px;
+   display: flex;
+   align-items: center;
+   flex-direction: column;
+ }
+
+ .chat-form textarea {
+   background: #fbfbfb;
+   width: 75%;
+   height: 50px;
+   border: 2px solid #eee;
+   border-radius: 3px;
+   resize: none;
+   padding: 10px;
+   font-size: .8em;
+   color: #333;
+ }
+
+ .chat-form textarea:focus {
+   background: #fff;
+ }
+
+		/* .chat-form button {
+			background: #23d160;
+			padding: 5px 15px;
+			font-size: .8em;
+			color: #fff;
+			border: none;
+			margin: 0 10px;
+			border-radius: 3px;
+			box-shadow: 0 3px 0 #1cb251;
+			cursor: pointer;
+
+			-webkit-transaction: background .2s ease;
+			-moz-transaction: backgroud .2s ease;
+			-o-transaction: backgroud .2s ease;
+      } */
+
+      .chat-form .control {
+       width: 75%;
+     }
+
+     .chat-form button:hover {
+       background: #13c8d9;
+     }
+
+     .trekk-title {
+       color: white;
+       margin-left: .5em;
+       font-style: helvetica;
+       font-weight: bold;
+       font-size: 1.5em;
+     }
+   </style>
+ </head>
+ <body>
+  <nav class="navbar is-fixed-top is-success" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="#">
+        <img src="./TrekkLogo.png" alt="Welcome to Trekk!">
+        <p class="trekk-title">Trekk</p>
+      </a>
+    </div>
+    <div class="navbar-end">
+      <a class="navbar-item is-pulled-right" href='criartarefa.html'>
+        <span class="icon ">
+          <i class="fas fa-plus-square fa-2x" aria-hidden="true"></i>
+        </span>
+        <span></span>
+      </a>
+    </div>
+  </nav>
+
+
+  <div class="chat-container">
+    <article class="message is-medium is-success">
+      <div class="message-header">
+        <p>Chat</p>
+      </div>
+      <div class="chatbox">
+        <div class="chatlogs">
+          <div class="chat friend">
+            <div class="user-photo"></div>
+            <p class="chat-message">Cara vc sabe do Joãozinho?</p>
+          </div>
+          <div class="chat self">
+            <div class="user-photo"></div>
+            <p class="chat-message">Sei não</p>
+          </div>
+          <div class="chat self">
+            <div class="user-photo"></div>
+            <p class="chat-message">Pq?</p>
+          </div>
+          <div class="chat friend">
+            <div class="user-photo"></div>
+            <p class="chat-message">To travado em uma dependência que depende dele</p>
+          </div>
+          <div class="chat friend">
+            <div class="user-photo"></div>
+            <p class="chat-message">Cara vc sabe do Joãozinho?</p>
+          </div>
+          <div class="chat self">
+            <div class="user-photo"></div>
+            <p class="chat-message">Sei não</p>
+          </div>
+          <div class="chat self">
+            <div class="user-photo"></div>
+            <p class="chat-message">Pq?</p>
+          </div>
+          <div class="chat friend">
+            <div class="user-photo"></div>
+            <p class="chat-message">To travado em uma dependência que depende dele</p>
+          </div>
+          <div class="chat friend">
+            <div class="user-photo"></div>
+            <p class="chat-message">Cara vc sabe do Joãozinho?</p>
+          </div>
+          <div class="chat self">
+            <div class="user-photo"></div>
+            <p class="chat-message">Sei não</p>
+          </div>
+          <div class="chat self">
+            <div class="user-photo"></div>
+            <p class="chat-message">Pq?</p>
+          </div>
+          <div class="chat friend">
+            <div class="user-photo"></div>
+            <p class="chat-message">To travado em uma dependência que depende dele</p>
+          </div>
+        </div>
+        <div class="chat-form">
+          <textarea></textarea>
+          <div class="control">
+            <button class="button is-primary is-fullwidth">Enviar</button>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+  <div class="cards-container">
+    <article class="message is-medium is-success">
+      <div class="message-header">
+        <p><a href='tarefacriada.html' style="text-decoration: none;">Task 1</a></p>
+        <p>Deadline: 00/00/0000</p>
+      </div>
+      <div class="message-body is-expanded">
+        <div class="message-body-left">
+          <p>Has closed eyes but still sees you kitty poochy, but need to chase tail ignore the human until she needs to get up, then climb on her lap and sprawl swat turds around the house with tail in the air. Pretend you want to go out but then don't rub whiskers on bare skin act innocent or purr while eating, for mice, meowzer.</p>
+          <nav class="panel">
+            <p class="panel-heading">
+              Task Progress
+            </p>
+            <div class="panel-block">
+              <label class="checkbox">
+                <input type="checkbox" checked>
+                Item 
+              </label>
+            </div>
+            <div class="panel-block">
+              <label class="checkbox">
+                <input type="checkbox" checked>
+                Item 
+              </label>
+            </div>
+            <div class="panel-block">
+              <label class="checkbox">
+                <input type="checkbox" checked>
+                Item 
+              </label>
+            </div>
+            <div class="panel-block">
+              <label class="checkbox">
+                <input type="checkbox" checked>
+                Item 
+              </label>
+            </div>
+            <div class="panel-block">
+              <label class="checkbox">
+                <input type="checkbox" >
+                Item 
+              </label>
+            </div>
+          </nav>
+        </div>
+        <div class="message-body-right">
+          <div class="team-member-container">
+            <img class="team-member-icon task-creator" src="bot.png"></img>
+            <img class="team-member-icon" src="bot.png"></img>
+            <img class="team-member-icon" src="bot.png"></img>
+          </div>
+        </div>
+      </div>
+    </article>
+    <article class="message is-medium is-success ">
+      <div class="message-header">
+        <p>Task 3</p>
+        <p>Deadline: 00/00/0000</p>
+      </div>
+      <div class="message-body">
+        <progress class="progress is-danger" value="15" max="100">15%</progress>
+        <div class="team-member-container">
+          <img class="team-member-icon task-creator" src="bot.png"></img>
+          <img class="team-member-icon" src="bot.png"></img>
+        </div>
+      </div>
+    </article>
+    <article class="message is-medium is-success">
+      <div class="message-header">
+        <p>Task 4</p>
+        <p>Deadline: 00/00/0000</p>
+      </div>
+      <div class="message-body">
+        <progress class="progress is-warning" value="50" max="100">50%</progress>
+        <div class="team-member-container">
+          <img class="team-member-icon task-creator" src="bot.png"></img>
+          <img class="team-member-icon" src="bot.png"></img>
+          <img class="team-member-icon" src="bot.png"></img>
+          <img class="team-member-icon" src="bot.png"></img>
+        </div>
+      </div>
+    </article>
+    <article class="message is-medium is-success">
+      <div class="message-header">
+        <p>Nova task</p>
+        <p>Deadline: 00/00/0000</p>
+      </div>
+      <div class="message-body is-expanded">
+        <div class="message-body-left">
+          <p>Texto da tarefa aqui</p>
+          <nav class="panel">
+            <p class="panel-heading">
+              Task Progress
+            </p>
+            <div class="panel-block">
+              <label class="checkbox">
+                <input type="checkbox">
+                Item 1
+              </label>
+            </div>
+            <div class="panel-block">
+              <label class="checkbox">
+                <input type="checkbox">
+                Item 2
+              </label>
+            </div>
+          </nav>
+        </div>
+        <div class="message-body-right">
+          <div class="team-member-container">
+            <img class="team-member-icon task-creator" src="bot.png"></img>
+            <img class="team-member-icon" src="bot.png"></img>
+          </div>
+          <div class="task-dependencies-container">
+            <nav class="panel">
+              <p class="panel-heading">Task Dependencies: </p>
+              <div class="task-dependencie panel-block">
+               <p>Task 1</p>
+               <progress class="progress is-success" value="90" max="100">90%</progress>
+             </div>
+           </nav>
+         </div>
+       </div>
+     </div>
+   </article>
+   
+ </div>
+ <div class="form-container">
+  <article class="message is-medium is-success">
+    <div class="message-header">
+      <p>Nova Task</p>
+    </div>
+    <div class="message-body">
+      <div class="field">
+        <label class="label">Titulo</label>
+        <div class="control">
+          <input class="input" type="text" placeholder="digite o nome da tarefa">
+        </div>
+      </div>
+      <div class="field">
+
+        <label class="label">Descriçao</label>
+        <div class="field-body">
+          <div class="field">
+            <div class="control">
+              <textarea class="textarea" placeholder="Descriçao da tarefa"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <label class="label">Membros</label>
+      <div class="field has-addons">
+        <div class="control is-expanded">
+          <div class="select is-fullwidth">
+            <select name="country">
+              <option value="Pedro">Pedro</option>
+              <option value="Pedro">Pedro</option>
+              <option value="Pedro">Pedro</option>
+              <option value="Pedro">Pedro</option>
+              <option value="Pedro">Pedro</option>
+              <option value="Pedro">Pedro</option>
+            </select>
+          </div>
+        </div>
+        <div class="control">
+          <button type="submit" class="button is-primary">Choose</button>
+        </div>
+      </div>
+      <label class="label">Dependencias</label>
+      <div class="field has-addons">
+        <div class="control is-expanded">
+          <div class="select is-fullwidth">
+            <select name="country">
+              <option value="Task1">Task1</option>
+
+            </select>
+          </div>
+        </div>
+        <div class="control">
+          <button type="submit" class="button is-primary">Choose</button>
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">Deadline</label>
+        <div class="control">
+          <input class="input" type="text" placeholder="dd/mm/aaaa">
+        </div>
+      </div>
+      <div class="control">
+        <button class="button is-primary">Criar</button>
+      </div>
+    </div>
+
+  </article>
+</div>
+</body>
