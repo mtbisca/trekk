@@ -501,6 +501,15 @@
             .catch(function (error) {
               console.log(error);
             });
+
+            // clear previous create data
+            this.createTaskData.taskTitle = "";
+            this.createTaskData.taskDescription = "";
+            this.createTaskData.taskDeadline = "";
+            this.createTaskData.checkedTeamMembers = [];
+            this.createTaskData.checkedDependencies = [];
+            this.createTaskData.subItemsList = [];
+            this.createTaskData.currentSubItem = "";
             this.toggleCreateMode();
         }
       }
