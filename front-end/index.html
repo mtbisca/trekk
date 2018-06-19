@@ -4,7 +4,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
   <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.5.1/vue-resource.js"></script>  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.5.1/vue-resource.js"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <meta charset="utf-8">
   <style>
@@ -327,7 +327,7 @@
               </div>
             </div>
           </div>
-          
+
           <label class="label">Membros</label>
           <nav class="panel">
             <div class="panel-block" v-for="member in this.teamMembers">
@@ -346,6 +346,19 @@
               </label>
             </div>
           </nav>
+          <div class="subitems-list">
+            <li v-for="item in createTaskData.subItemsList">{{item}}</li>
+          </div>
+          <div class="field has-addons">
+            <div class="control">
+              <input class="input" type="text" placeholder="Nova subtarefa" v-model="createTaskData.currentSubItem">
+            </div>
+            <div class="control">
+              <a class="button is-primary" @click="addNewSubItem()">
+                +
+              </a>
+            </div>
+          </div>
           <div class="field">
             <label class="label">Deadline</label>
             <div class="control">
@@ -395,6 +408,8 @@
             taskDeadline: "",
             checkedTeamMembers: [],
             checkedDependencies:[],
+            subItemsList: [],
+            currentSubItem: ""
           },
           inCreateMode: false
       },
@@ -460,6 +475,11 @@
           this.newMessageText = "";
         },
 
+        "addNewSubItem": function () {
+          this.createTaskData.subItemsList.push(this.createTaskData.currentSubItem);
+          this.createTaskData.currentSubItem = "";
+        },
+
        "createTask": function () {
           axios.post('http://localhost:8000/taskcontroller/inserir', {
               title: this.createTaskData.taskTitle,
@@ -470,7 +490,7 @@
               dependencies: this.createTaskData.checkedDependencies,
               creator: 0,
               members: this.createTaskData.checkedTeamMembers.length,
-              checklistItems: [],
+              checklistItems: this.createTaskData.subItemsList,
               checkedItems: [],
               isExpanded: false
             })
