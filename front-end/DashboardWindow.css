@@ -1,0 +1,138 @@
+.navbar {
+  width: 100%;
+}
+
+.chat-container {
+  float: left;
+  width: 25%;
+  margin-top: 2em;
+}
+
+.cards-container {
+  overflow: auto;
+  float: left;
+  width: 75%;
+  min-width: 50%;
+  margin-top: 2em;
+}
+
+.form-container {
+  float: right;
+  width: 25%;
+  margin-top: 2em;
+}
+
+.message {
+  margin: 2em;
+}
+
+.chat-container .message {
+  height: 100%;
+  margin-right: 1em;
+}
+
+.cards-container .message {
+  margin-left: 1em;
+}
+
+.form-container .message {
+  margin-left: 1em;
+}
+
+.progress {
+  width: 100%;
+  display: inline-block;
+}
+
+.message-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cards-container .message-header {
+  cursor: pointer;
+}
+
+.team-member-icon {
+  height: 2em;
+  width: 2em;
+  border-radius: 30%;
+}
+
+.task-creator {
+  border: 2px solid black;
+}
+
+.cards-container .message-body {
+  display: flex;
+  justify-content: space-between;
+}
+
+.is-expanded {
+  justify-content: flex-start;
+}
+
+.message-body-left {
+  width: 50%;
+}
+
+.message-body-right {
+  margin-left: 3em;
+  width: 50%;
+}
+
+.message-body-left p {
+  font-size: .8em;
+  margin-bottom: 1em;
+}
+
+.message-body-right .team-member-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.panel-heading {
+  font-size: 1.2em !important;
+  margin-bottom: 0 !important;
+}
+
+.task-dependencies-container {
+  margin-top: 1em;
+}
+
+.task-dependencies-container p {
+  align-self: flex-start;
+}
+
+.task-dependencie {
+  display: flex;
+  align-items: center;
+}
+
+.task-dependencie p {
+  font-size: .8em;
+  display: inline-block;
+  width: 48%;
+  margin-right: 0.6em;
+}
+
+.task-dependencie progress {
+  display: inline-block;
+  width: 50%;
+}
+
+.trekk-title {
+  color: white;
+  margin-left: .5em;
+  font-style: helvetica;
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+#dashboard-base {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
