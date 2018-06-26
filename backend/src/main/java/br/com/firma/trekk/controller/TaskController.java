@@ -23,4 +23,9 @@ public class TaskController {
     public List<Task> getAll(){
         return taskRepository.findAll();
     }
+
+    @DeleteMapping("/remover")
+    public void remover(@PathVariable("id") Integer id){
+        taskRepository.deleteById(id);
+    }
 }
