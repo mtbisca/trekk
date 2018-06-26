@@ -1,6 +1,6 @@
-const LoginWindow = { 
-	template: `<div id="login-window">
-	   <section class="hero is-success is-fullheight">
+const LoginWindow = {
+    template: `<div id="login-window">
+       <section class="hero is-success is-fullheight">
         <div class="hero-body">
             <div class="container has-text-centered">
                 <div class="column is-4 is-offset-4">
@@ -26,7 +26,8 @@ const LoginWindow = {
                   Remember me
                 </label>
                             </div>
-                            <router-link tag="button" to="dashboard" class="button is-block is-info is-large is-fullwidth login-button">Login</router-link> <!-- TODO - improvisado. Fazer direito a validacao depois usando o action desse form>
+                            <!-- TODO - improvisado. Fazer direito a validacao depois usando o action desse form-->
+                            <router-link tag="button" to="dashboard" class="button is-block is-info is-large is-fullwidth login-button">Login</router-link>
                         </form>
                     </div>
                     <p class="has-text-grey">
@@ -37,6 +38,6 @@ const LoginWindow = {
                 </div>
             </div>
         </div>
-    </section>	
-	</div>`
-	}
+    </section>  
+    </div>`
+}

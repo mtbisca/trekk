@@ -1,137 +1,138 @@
-   .navbar{
-      width: 100%;
-    }
-    .chat-container {
-	    float:left;
-      width: 25%;
-      margin-top: 2em;
-    }
+.navbar {
+  width: 100%;
+}
 
-    .cards-container {
-	    overflow: auto;
-	    float: left;
-      width: 75%;
-      min-width: 50%;
-      margin-top: 2em;
-    }
-    .form-container{
-	    float:right;
-	width: 25%;
-      margin-top: 2em;
-    }
+.chat-container {
+  float: left;
+  width: 25%;
+  margin-top: 2em;
+}
 
-    .message {
-      margin: 2em;
-    }
+.cards-container {
+  overflow: auto;
+  float: left;
+  width: 75%;
+  min-width: 50%;
+  margin-top: 2em;
+}
 
-    .chat-container .message {
-      height: 100%;
-      margin-right: 1em;
-    }
+.form-container {
+  float: right;
+  width: 25%;
+  margin-top: 2em;
+}
 
-    .cards-container .message {
-      margin-left: 1em;
-    }
+.message {
+  margin: 2em;
+}
 
-    .form-container .message{
-      margin-left: 1em;
-    }
+.chat-container .message {
+  height: 100%;
+  margin-right: 1em;
+}
 
-    .progress {
-      width: 100%;
-      display: inline-block;
-    }
+.cards-container .message {
+  margin-left: 1em;
+}
 
-    .message-header {
-      display: flex;
-      justify-content: space-between;
-    }
+.form-container .message {
+  margin-left: 1em;
+}
 
-    .cards-container .message-header {
-      cursor: pointer;
-    }
+.progress {
+  width: 100%;
+  display: inline-block;
+}
 
-    .team-member-icon {
-      height: 2em;
-      width: 2em;
-      border-radius: 30%;
-    }
+.message-header {
+  display: flex;
+  justify-content: space-between;
+}
 
-    .task-creator {
-      border: 2px solid black;
-    }
+.cards-container .message-header {
+  cursor: pointer;
+}
 
-    .cards-container .message-body {
-      display: flex;
-      justify-content: space-between;
-    }
+.team-member-icon {
+  height: 2em;
+  width: 2em;
+  border-radius: 30%;
+}
 
-    .is-expanded {
-      justify-content: flex-start;
-    }
+.task-creator {
+  border: 2px solid black;
+}
 
-    .message-body-left {
-      width: 50%;
-    }
+.cards-container .message-body {
+  display: flex;
+  justify-content: space-between;
+}
 
-    .message-body-right {
-      margin-left: 3em;
-      width: 50%;
-    }
-    .message-body-left p {
-      font-size: .8em;
-      margin-bottom: 1em;
-    }
+.is-expanded {
+  justify-content: flex-start;
+}
 
-    .message-body-right .team-member-container {
-      display: flex;
-      justify-content: flex-end;
-    }
+.message-body-left {
+  width: 50%;
+}
 
-    .panel-heading {
-      font-size: 1.2em !important;
-      margin-bottom: 0 !important;
+.message-body-right {
+  margin-left: 3em;
+  width: 50%;
+}
 
-    }
+.message-body-left p {
+  font-size: .8em;
+  margin-bottom: 1em;
+}
 
-    .task-dependencies-container {
-      margin-top: 1em;
-    }
+.message-body-right .team-member-container {
+  display: flex;
+  justify-content: flex-end;
+}
 
-    .task-dependencies-container p {
-      align-self: flex-start;
-    }
+.panel-heading {
+  font-size: 1.2em !important;
+  margin-bottom: 0 !important;
+}
 
-    .task-dependencie {
-      display: flex;
-      align-items: center;
-    }
+.task-dependencies-container {
+  margin-top: 1em;
+}
 
-    .task-dependencie p {
-      font-size: .8em;
-      display: inline-block;
-      width: 48%;
-      margin-right: 0.6em;
-    }
+.task-dependencies-container p {
+  align-self: flex-start;
+}
 
-    .task-dependencie progress {
-      display: inline-block;
-      width: 50%;
-    }
+.task-dependencie {
+  display: flex;
+  align-items: center;
+}
 
+.task-dependencie p {
+  font-size: .8em;
+  display: inline-block;
+  width: 48%;
+  margin-right: 0.6em;
+}
 
-    .trekk-title {
-      color: white;
-      margin-left: .5em;
-      font-style: helvetica;
-      font-weight: bold;
-      font-size: 1.5em;
-    }
+.task-dependencie progress {
+  display: inline-block;
+  width: 50%;
+}
 
-    #dashboard-base {
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    right: 0;
-    top: 0;
-    }
+.trekk-title {
+  color: white;
+  margin-left: .5em;
+  font-style: helvetica;
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+#dashboard-base {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+}

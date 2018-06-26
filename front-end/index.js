@@ -1,13 +1,21 @@
-const routes = [
-	{ path: '/', redirect: '/login'},  
-	{ path: '/login', component: LoginWindow },
-  	{ path: '/dashboard', component: DashboardWindow }
+const routes = [{
+        path: '/',
+        redirect: '/login'
+    },
+    {
+        path: '/login',
+        component: LoginWindow
+    },
+    {
+        path: '/dashboard',
+        component: DashboardWindow
+    }
 ]
 
 const router = new VueRouter({
-	routes: routes
+    routes: routes
 })
 
 const app = new Vue({
-	router,      
-    }).$mount('#app');
+    router,
+}).$mount('#app');

@@ -1,43 +1,50 @@
-   #login-window {
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    right: 0;
-    top: 0;
-   } 
+#login-window {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
 
-   #logo-img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 20%;
-   }
+#logo-img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 20%;
+}
 
-  .hero.is-success {
+.hero.is-success {
   background: #F2F6FA;
 }
-.hero .nav, .hero.is-success .nav {
+
+.hero .nav,
+.hero.is-success .nav {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
+
 .box {
   margin-top: 5rem;
 }
+
 .avatar {
   margin-top: -70px;
   padding-bottom: 20px;
 }
+
 .avatar img {
   padding: 5px;
   background: #fff;
   border-radius: 10%;
   width: 60%;
-  -webkit-box-shadow: 0 2px 3px rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,.1);
-  box-shadow: 0 2px 3px rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,.1);
+  -webkit-box-shadow: 0 2px 3px rgba(10, 10, 10, .1), 0 0 0 1px rgba(10, 10, 10, .1);
+  box-shadow: 0 2px 3px rgba(10, 10, 10, .1), 0 0 0 1px rgba(10, 10, 10, .1);
 }
+
 .login-button.is-info {
-	background-color: #23d160;
+  background-color: #23d160;
 }
+
 .login-button.is-info:hover {
-	background-color: #1fb152;
+  background-color: #1fb152;
 }
