@@ -25,7 +25,8 @@ public class TaskController {
     }
 
     @DeleteMapping("/remover")
-    public void remover(@PathVariable("id") Integer id){
+    public void remover(@RequestBody Integer id){
         taskRepository.deleteById(id);
     }
+
 }
