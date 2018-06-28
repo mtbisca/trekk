@@ -14,6 +14,24 @@ const SettingsWindow = {
 	    "logout": function () {
 		   store.commit('cleanUser')
 		    this.$router.push('login')
+	    },
+	    "mudarSenha": function() {
+
+		    // TODO - verificar se old password ta certo antes de atualizar senha.
+		    // TODO - verificar se pass1 == pass2 antes de confirmar mudar senha. Se for diferente avisar user.
+		   axios.post('http://localhost:8000/usucontroller/inserir', {
+                    id: store.state.currentUser.id,
+			name: store.state.currentUser.username,
+			   senha: this.passwordNew1
+		   })
+                .then(function(response) {
+                    console.log(response);
+		})
+                .catch(function(error) {
+                    console.log(error);
+                }) 
+		    
+		    
 	    }
     },
 
@@ -40,7 +58,7 @@ const SettingsWindow = {
     </nav>
 	<div id='mudar-senha'>
 	<i class="fas fa-user fa-7x" id='profile-icon'></i>
-	<h1> Mudar senha </h1>
+	<h1 class="is-large"> Mudar senha </h1>
                         <form action=""> 
                             <div class="field">
                                 <div class="control">
@@ -61,7 +79,7 @@ const SettingsWindow = {
                             </div>
 			
 				 <!-- TODO - ainda nao funciona -->
-                            <Button v-on:click='' class="button is-block is-info  is-fullwidth login-button">Mudar senha</Button>
+                            <Button v-on:click='mudarSenha()' class="button is-block is-info  is-fullwidth login-button">Mudar senha</Button>
                         </form>
 	</div>
 	</div>`
