@@ -3,6 +3,7 @@ package br.com.firma.trekk;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+
 @SpringBootApplication
 public class TrekkApplication {
 
@@ -10,3 +11,4 @@ public class TrekkApplication {
         SpringApplication.run(TrekkApplication.class, args);
     }
 }
+

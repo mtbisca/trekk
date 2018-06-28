@@ -2,8 +2,8 @@ const LoginWindow = {
 
 	data: function () {
 		return {
-			username: 'joaozinho',
-			password: 'senhaDoJao'
+			username: '',
+			password: ''
 		}
 	},
 
