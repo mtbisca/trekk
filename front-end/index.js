@@ -14,7 +14,7 @@ const routes = [{
     },
     {
         path: '/settings',
-        component: DashboardWindow,
+        component: SettingsWindow,
 	name : 'settings'
     }
 ]
