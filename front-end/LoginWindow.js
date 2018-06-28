@@ -1,4 +1,31 @@
 const LoginWindow = {
+
+	data: function () {
+		return {
+			username: 'joaozinho',
+			password: 'senhaDoJao'
+		}
+	},
+
+	methods: {
+		"authenticate" : function () {
+		    // TODO - receber um token do backend e armazenar na store corretamente as coisas.
+		    store.commit('authenticate', {id: 999,username: this.username, token: 'tokenTeste'});
+        axios.get('http://localhost:8000/usucontroller/getusers', {params: { username: this.username, password: this.password}})
+            .then(response => {
+                // JSON responses are automatically parsed.
+                console.log(response.data)
+            })
+            .catch(e => {
+                console.log(e)
+            })
+	
+			// TODO - if( correctUserAndPass). Falta implementar
+		if(true) {
+			this.$router.push('dashboard')	
+		}
+		} 
+	},
     template: `<div id="login-window">
        <section class="hero is-success is-fullheight">
         <div class="hero-body">
@@ -11,13 +38,13 @@ const LoginWindow = {
                         <form action=""> <!-- TODO - improvisado por enquanto, mas aqui deve validar o login -->
                             <div class="field">
                                 <div class="control">
-                                    <input class="input is-large" type="email" placeholder="Your Email" autofocus="">
+                                    <input class="input is-large" v-model="username" type="text" placeholder="Your Username" autofocus="">
                                 </div>
                             </div>
 
                             <div class="field">
                                 <div class="control">
-                                    <input class="input is-large" type="password" placeholder="Your Password">
+                                    <input class="input is-large" v-model="password"  type="password" placeholder="Your Password">
                                 </div>
                             </div>
                             <div class="field">
@@ -27,7 +54,7 @@ const LoginWindow = {
                 </label>
                             </div>
                             <!-- TODO - improvisado. Fazer direito a validacao depois usando o action desse form-->
-                            <router-link tag="button" to="dashboard" class="button is-block is-info is-large is-fullwidth login-button">Login</router-link>
+                            <Button v-on:click='authenticate()' class="button is-block is-info is-large is-fullwidth login-button">Login</Button>
                         </form>
                     </div>
                     <p class="has-text-grey">
