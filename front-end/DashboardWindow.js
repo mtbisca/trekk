@@ -22,6 +22,7 @@ const DashboardWindow = {
             ],
             newMessageText: "",
             teamMembers: ["Pedro", "João", "Maria"],
+            
             createTaskData: {
                 taskId: 3,
                 taskTitle: "",
@@ -119,7 +120,23 @@ const DashboardWindow = {
             this.createTaskData.subItemsList.push(this.createTaskData.currentSubItem);
             this.createTaskData.currentSubItem = "";
         },
-
+        
+        "removeNewSubItem": function(item) {
+            var i = this.createTaskData.subItemsList.indexOf(item);
+            this.createTaskData.subItemsList.splice(i, 1);
+            this.createTaskData.currentSubItem = "";
+        },
+        "clearTaskData": function() {
+           // clear previous create data
+            this.createTaskData.taskTitle = "";
+            this.createTaskData.taskDescription = "";
+            this.createTaskData.taskDeadline = "";
+            this.createTaskData.checkedTeamMembers = [];
+            this.createTaskData.checkedDependencies = [];
+            this.createTaskData.subItemsList = [];
+            this.createTaskData.currentSubItem = "";
+        },
+        
         "createTask": function() {
             axios.post('http://localhost:8000/taskcontroller/inserir', {
                     title: this.createTaskData.taskTitle,
@@ -141,15 +158,10 @@ const DashboardWindow = {
                 .catch(function(error) {
                     console.log(error);
                 });
+            
+            this.clearTaskData();
 
-            // clear previous create data
-            this.createTaskData.taskTitle = "";
-            this.createTaskData.taskDescription = "";
-            this.createTaskData.taskDeadline = "";
-            this.createTaskData.checkedTeamMembers = [];
-            this.createTaskData.checkedDependencies = [];
-            this.createTaskData.subItemsList = [];
-            this.createTaskData.currentSubItem = "";
+ 
             this.toggleCreateMode();
         },
            "editTask": function(task) {
@@ -222,10 +234,11 @@ const DashboardWindow = {
 	</div>
 
 </div>
+
 <a  class="float" v-show="!inCreateMode"  @click="toggleCreateMode()">
-<span>
-<i class="fa fa-plus my-float"></i>
-</span>
+    <span>
+        <i class="fa fa-plus my-float"></i>
+    </span>
 </a>
 
 
@@ -334,7 +347,9 @@ const DashboardWindow = {
           </nav>
 	<label class="label">Subtarefas</label>
           <div class="subitems-list">
-            <li v-for="item in createTaskData.subItemsList">{{item}}</li>
+            <li v-for="item in createTaskData.subItemsList">{{item}}<a class="button is-danger is-small is-pulled-right	" @click="removeNewSubItem(item)">
+                -
+              </a></li>
           </div>
           <div class="field has-addons">
             <div class="control">
@@ -354,7 +369,7 @@ const DashboardWindow = {
           </div>
           <div class="control">
             <button class="button is-primary" @click="createTask()">Criar</button>
-            <button class="button is-danger" @click="toggleCreateMode()">Cancel</button>
+            <button class="button is-danger"v-on:click="() => (clearTaskData() , toggleCreateMode())">Cancel</button>
           </div>
         </div>
       </article>
