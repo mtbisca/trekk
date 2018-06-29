@@ -22,6 +22,7 @@ const DashboardWindow = {
             ],
             newMessageText: "",
             teamMembers: ["Pedro", "João", "Maria"],
+            
             createTaskData: {
                 taskId: 3,
                 taskTitle: "",
@@ -119,6 +120,13 @@ const DashboardWindow = {
             this.createTaskData.subItemsList.push(this.createTaskData.currentSubItem);
             this.createTaskData.currentSubItem = "";
         },
+        
+        "removeNewSubItem": function(item) {
+            var i = this.createTaskData.subItemsList.indexOf(item);
+            this.createTaskData.subItemsList.splice(i, 1);
+            this.createTaskData.currentSubItem = "";
+        },
+
 
         "createTask": function() {
             axios.post('http://localhost:8000/taskcontroller/inserir', {
@@ -222,10 +230,11 @@ const DashboardWindow = {
 	</div>
 
 </div>
+
 <a  class="float" v-show="!inCreateMode"  @click="toggleCreateMode()">
-<span>
-<i class="fa fa-plus my-float"></i>
-</span>
+    <span>
+        <i class="fa fa-plus my-float"></i>
+    </span>
 </a>
 
 
@@ -334,7 +343,9 @@ const DashboardWindow = {
           </nav>
 	<label class="label">Subtarefas</label>
           <div class="subitems-list">
-            <li v-for="item in createTaskData.subItemsList">{{item}}</li>
+            <li v-for="item in createTaskData.subItemsList">{{item}}<a class="button is-danger is-small is-pulled-right	" @click="removeNewSubItem(item)">
+                -
+              </a></li>
           </div>
           <div class="field has-addons">
             <div class="control">
