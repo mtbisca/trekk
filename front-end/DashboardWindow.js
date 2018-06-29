@@ -42,7 +42,7 @@ const DashboardWindow = {
                 // JSON responses are automatically parsed.
                 console.log(response.data)
                 this.tasks = response.data
-            })
+	    })
             .catch(e => {
                 console.log(e)
             })
@@ -153,8 +153,8 @@ const DashboardWindow = {
                 })
                 .then(function(response) {
                     console.log(response);
-                    this.tasks.push(response.data)
-                })
+                    this.tasks.push(response.data);
+		})
                 .catch(function(error) {
                     console.log(error);
                 });
@@ -172,7 +172,7 @@ const DashboardWindow = {
             this.createTaskData.checkedTeamMembers = task.members;
             this.createTaskData.checkedDependencies = task.dependencies;
             this.createTaskData.subItemsList = task.checklistItems;
-            this.createTaskData.currentSubItem = task.checkedItems;
+            this.createTaskData.currentSubItem = [];
             this.toggleCreateMode(); 
         },
 	    "clearChat": function () {
