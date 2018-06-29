@@ -153,14 +153,14 @@ const DashboardWindow = {
             this.toggleCreateMode();
         },
            "editTask": function(task) {
-	          this.createTaskData.taskId = task.id;
+	    this.createTaskData.taskId = task.id;
             this.createTaskData.taskTitle = task.title;
             this.createTaskData.taskDescription = task.description;
             this.createTaskData.taskDeadline = task.deadline;
             this.createTaskData.checkedTeamMembers = task.members;
             this.createTaskData.checkedDependencies = task.dependencies;
             this.createTaskData.subItemsList = task.checklistItems;
-            this.createTaskData.currentSubItem = task.checkedItems;
+            this.createTaskData.currentSubItem = [];
             this.toggleCreateMode(); 
         },
 	    "clearChat": function () {
