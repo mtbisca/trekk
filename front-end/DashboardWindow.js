@@ -22,6 +22,7 @@ const DashboardWindow = {
             ],
             newMessageText: "",
             teamMembers: ["Pedro", "João", "Maria"],
+            
             createTaskData: {
                 taskId: 3,
                 taskTitle: "",
@@ -50,10 +51,10 @@ const DashboardWindow = {
     methods: {
 	"removerTarefa": function(task) {
                		var i = this.tasks.indexOf(task);
-			this.tasks.splice(i, 1);;
-	axios.delete('http://localhost:8000/taskcontroller/remover', {
-                    id: task.id
-                })
+			this.tasks.splice(i, 1);
+        
+  
+	axios.delete('http://localhost:8000/taskcontroller/remover/' + task.id)
                 .then(function(response) {
                     console.log(response);
                     //this.tasks.push(response.data)
@@ -119,7 +120,23 @@ const DashboardWindow = {
             this.createTaskData.subItemsList.push(this.createTaskData.currentSubItem);
             this.createTaskData.currentSubItem = "";
         },
-
+        
+        "removeNewSubItem": function(item) {
+            var i = this.createTaskData.subItemsList.indexOf(item);
+            this.createTaskData.subItemsList.splice(i, 1);
+            this.createTaskData.currentSubItem = "";
+        },
+        "clearTaskData": function() {
+           // clear previous create data
+            this.createTaskData.taskTitle = "";
+            this.createTaskData.taskDescription = "";
+            this.createTaskData.taskDeadline = "";
+            this.createTaskData.checkedTeamMembers = [];
+            this.createTaskData.checkedDependencies = [];
+            this.createTaskData.subItemsList = [];
+            this.createTaskData.currentSubItem = "";
+        },
+        
         "createTask": function() {
             axios.post('http://localhost:8000/taskcontroller/inserir', {
                     title: this.createTaskData.taskTitle,
@@ -141,19 +158,14 @@ const DashboardWindow = {
                 .catch(function(error) {
                     console.log(error);
                 });
+            
+            this.clearTaskData();
 
-            // clear previous create data
-            this.createTaskData.taskTitle = "";
-            this.createTaskData.taskDescription = "";
-            this.createTaskData.taskDeadline = "";
-            this.createTaskData.checkedTeamMembers = [];
-            this.createTaskData.checkedDependencies = [];
-            this.createTaskData.subItemsList = [];
-            this.createTaskData.currentSubItem = "";
+ 
             this.toggleCreateMode();
         },
            "editTask": function(task) {
-	          this.createTaskData.taskId = task.id;
+            this.createTaskData.taskId = task.id;
             this.createTaskData.taskTitle = task.title;
             this.createTaskData.taskDescription = task.description;
             this.createTaskData.taskDeadline = task.deadline;
@@ -181,11 +193,7 @@ const DashboardWindow = {
         </a>
       </div>
       <div class="navbar-end">
-        <a class="navbar-item is-pulled-right" v-show="!inCreateMode">
-          <span class="icon" @click="toggleCreateMode()">
-            <i class="fas fa-plus-square fa-2x" aria-hidden="true"></i>
-          </span>
-        </a>
+       
 	<a class="navbar-item is-pulled-right" >
           <span class="icon" @click="() => this.$router.push('settings')">
             <i class="fas fa-cog " aria-hidden="true"></i>
@@ -227,6 +235,11 @@ const DashboardWindow = {
 
 </div>
 
+<a  class="float" v-show="!inCreateMode"  @click="toggleCreateMode()">
+    <span>
+        <i class="fa fa-plus my-float"></i>
+    </span>
+</a>
 
 
         </div>
@@ -240,7 +253,7 @@ const DashboardWindow = {
           <div class="chat-form">
             <textarea v-model="newMessageText"></textarea>
             <div class="control">
-              <button class="button is-primary is-fullwidth" @click="sendMessage()">Enviar</button>
+              <button class="button is-primary " @click="sendMessage()">Enviar</button>
             </div>
           </div>
         </div>
@@ -334,7 +347,9 @@ const DashboardWindow = {
           </nav>
 	<label class="label">Subtarefas</label>
           <div class="subitems-list">
-            <li v-for="item in createTaskData.subItemsList">{{item}}</li>
+            <li v-for="item in createTaskData.subItemsList">{{item}}<a class="button is-danger is-small is-pulled-right	" @click="removeNewSubItem(item)">
+                -
+              </a></li>
           </div>
           <div class="field has-addons">
             <div class="control">
@@ -354,7 +369,7 @@ const DashboardWindow = {
           </div>
           <div class="control">
             <button class="button is-primary" @click="createTask()">Criar</button>
-            <button class="button is-danger" @click="toggleCreateMode()">Cancel</button>
+            <button class="button is-danger"v-on:click="() => (clearTaskData() , toggleCreateMode())">Cancel</button>
           </div>
         </div>
       </article>
