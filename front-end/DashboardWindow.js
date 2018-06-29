@@ -51,7 +51,7 @@ const DashboardWindow = {
 	"removerTarefa": function(task) {
                		var i = this.tasks.indexOf(task);
 			this.tasks.splice(i, 1);;
-	axios.post('http://localhost:8000/taskcontroller/remover', {
+	axios.delete('http://localhost:8000/taskcontroller/remover', {
                     id: task.id
                 })
                 .then(function(response) {
@@ -152,10 +152,8 @@ const DashboardWindow = {
             this.createTaskData.currentSubItem = "";
             this.toggleCreateMode();
         },
-		// TODO - BUG - na janela lateral ta bagunçado porque criar tarefa ta misturado com editar tarefa. Dividir em 2 componentes. 
-	    // Nao clicar clicar no botao pra confirmar o edit da tarefa porque da ruim no backend.
            "editTask": function(task) {
-	    this.createTaskData.taskId = task.id;
+	          this.createTaskData.taskId = task.id;
             this.createTaskData.taskTitle = task.title;
             this.createTaskData.taskDescription = task.description;
             this.createTaskData.taskDeadline = task.deadline;
@@ -163,7 +161,7 @@ const DashboardWindow = {
             this.createTaskData.checkedDependencies = task.dependencies;
             this.createTaskData.subItemsList = task.checklistItems;
             this.createTaskData.currentSubItem = task.checkedItems;
-            this.toggleCreateMode();
+            this.toggleCreateMode(); 
         },
 	    "clearChat": function () {
   this.messages = [];
