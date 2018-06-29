@@ -51,7 +51,7 @@ const DashboardWindow = {
 	"removerTarefa": function(task) {
                		var i = this.tasks.indexOf(task);
 			this.tasks.splice(i, 1);
-        window.alert(task.id);
+        
   
 	axios.delete('http://localhost:8000/taskcontroller/remover/' + task.id)
                 .then(function(response) {
