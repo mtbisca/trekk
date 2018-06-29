@@ -22,5 +22,8 @@ public class UsuarioController {
     public List<Usuario> getUsuarios(){
         return usuarioRepository.findAll();
     }
-
+    @GetMapping ("/getuser")
+    public List<Usuario> getUsuario(@RequestBody Usuario usuario){
+        return usuarioRepository.findAll(); // TODO - SLIUZAS, AJUDA NOIS!! FAZ ISSO AQUI VALIDAR O USER RECEBIDO E RETORNAR UM TOKEN DE LOGIN
+    }
 }

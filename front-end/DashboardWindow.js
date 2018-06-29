@@ -152,9 +152,8 @@ const DashboardWindow = {
             this.createTaskData.currentSubItem = "";
             this.toggleCreateMode();
         },
-
            "editTask": function(task) {
-	    this.createTaskData.taskId = task.id;
+	          this.createTaskData.taskId = task.id;
             this.createTaskData.taskTitle = task.title;
             this.createTaskData.taskDescription = task.description;
             this.createTaskData.taskDeadline = task.deadline;
@@ -162,14 +161,21 @@ const DashboardWindow = {
             this.createTaskData.checkedDependencies = task.dependencies;
             this.createTaskData.subItemsList = task.checklistItems;
             this.createTaskData.currentSubItem = task.checkedItems;
-            this.toggleCreateMode();
-        } 
+            this.toggleCreateMode(); 
+        },
+	    "clearChat": function () {
+  this.messages = [];
+  },
+	    "logout": function () {
+		   store.commit('cleanUser')
+		    this.$router.push('login')
+	    }
     },
 
     template: `<div id = 'dashboard-base'>
     <nav class="navbar is-fixed-top is-success" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
-        <a class="navbar-item" @click="() => this.inCreateMode = false">
+        <a class="navbar-item" @click="() => this.$router.go()">
           <img src="./TrekkLogo.png" alt="Welcome to Trekk!">
           <p class="trekk-title">Trekk</p>
         </a>
@@ -180,12 +186,49 @@ const DashboardWindow = {
             <i class="fas fa-plus-square fa-2x" aria-hidden="true"></i>
           </span>
         </a>
+	<a class="navbar-item is-pulled-right" >
+          <span class="icon" @click="() => this.$router.push('settings')">
+            <i class="fas fa-cog " aria-hidden="true"></i>
+          </span>
+        </a>
+	<a class="navbar-item is-pulled-right" >
+          <span class="icon" @click="logout()">
+            <i class="fas fa-sign-out-alt" aria-hidden="true"></i>
+          </span>
+        </a>
       </div>
     </nav>
     <div class="chat-container" v-show="!inCreateMode">
       <article class="message is-medium is-success">
         <div class="message-header">
           <p>Chat</p>
+
+
+<div class="dropdown is-right is-hoverable">
+	<div id="chat-dropdown-trigger" class="dropdown-trigger">
+		<button class="button" aria-haspopup="true" aria-controls="dropdown-menu4">
+		<span>Contacts</span>
+		<span class="icon is-small">
+		<i class="fas fa-angle-down" aria-hidden="true"></i>
+		</span>
+		</button>
+	</div>
+	<div class="dropdown-menu" id="chat-dropdown-menu" role="menu">
+		<div class="dropdown-content">
+			<div class="dropdown-item">
+				<ul class="menu-list">
+					<div  v-for="member in teamMembers">
+						<li><a v-on:click="clearChat">{{member}}</a></li>
+					</div>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+
+
         </div>
         <div class="chatbox">
           <div class="chatlogs">

@@ -136,3 +136,12 @@
   right: 0;
   top: 0;
 }
+
+    #chat-dropdown-trigger button {
+    color: #ffffff;
+    background: #1fc158;
+    border-color: #1fc158;
+    }
+    #chat-dropdown-menu {
+    min-width: 7rem;
+    }
