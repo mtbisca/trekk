@@ -50,10 +50,10 @@ const DashboardWindow = {
     methods: {
 	"removerTarefa": function(task) {
                		var i = this.tasks.indexOf(task);
-			this.tasks.splice(i, 1);;
-	axios.delete('http://localhost:8000/taskcontroller/remover', {
-                    id: task.id
-                })
+			this.tasks.splice(i, 1);
+        
+  
+	axios.delete('http://localhost:8000/taskcontroller/remover/' + task.id)
                 .then(function(response) {
                     console.log(response);
                     //this.tasks.push(response.data)
@@ -153,7 +153,7 @@ const DashboardWindow = {
             this.toggleCreateMode();
         },
            "editTask": function(task) {
-	    this.createTaskData.taskId = task.id;
+            this.createTaskData.taskId = task.id;
             this.createTaskData.taskTitle = task.title;
             this.createTaskData.taskDescription = task.description;
             this.createTaskData.taskDeadline = task.deadline;
@@ -181,11 +181,7 @@ const DashboardWindow = {
         </a>
       </div>
       <div class="navbar-end">
-        <a class="navbar-item is-pulled-right" v-show="!inCreateMode">
-          <span class="icon" @click="toggleCreateMode()">
-            <i class="fas fa-plus-square fa-2x" aria-hidden="true"></i>
-          </span>
-        </a>
+       
 	<a class="navbar-item is-pulled-right" >
           <span class="icon" @click="() => this.$router.push('settings')">
             <i class="fas fa-cog " aria-hidden="true"></i>
@@ -226,7 +222,11 @@ const DashboardWindow = {
 	</div>
 
 </div>
-
+<a  class="float" v-show="!inCreateMode"  @click="toggleCreateMode()">
+<span>
+<i class="fa fa-plus my-float"></i>
+</span>
+</a>
 
 
         </div>
@@ -240,7 +240,7 @@ const DashboardWindow = {
           <div class="chat-form">
             <textarea v-model="newMessageText"></textarea>
             <div class="control">
-              <button class="button is-primary is-fullwidth" @click="sendMessage()">Enviar</button>
+              <button class="button is-primary " @click="sendMessage()">Enviar</button>
             </div>
           </div>
         </div>
