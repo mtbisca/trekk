@@ -48,7 +48,23 @@ const DashboardWindow = {
     },
 
     methods: {
-        "toggleExpandClass": function(task) {
+	"removerTarefa": function(task) {
+               		var i = this.tasks.indexOf(task);
+			this.tasks.splice(i, 1);;
+	axios.delete('http://localhost:8000/taskcontroller/remover', {
+                    id: task.id
+                })
+                .then(function(response) {
+                    console.log(response);
+                    //this.tasks.push(response.data)
+		// TODO - se http 200 OK entao remover a task da UI.
+		})
+                .catch(function(error) {
+                    console.log(error);
+                });
+
+    	},
+	"toggleExpandClass": function(task) {
             task.isExpanded = !task.isExpanded;
         },
         "calculateProgress": function(task) {
@@ -135,7 +151,19 @@ const DashboardWindow = {
             this.createTaskData.subItemsList = [];
             this.createTaskData.currentSubItem = "";
             this.toggleCreateMode();
-        }
+        },
+
+           "editTask": function(task) {
+	    this.createTaskData.taskId = task.id;
+            this.createTaskData.taskTitle = task.title;
+            this.createTaskData.taskDescription = task.description;
+            this.createTaskData.taskDeadline = task.deadline;
+            this.createTaskData.checkedTeamMembers = task.members;
+            this.createTaskData.checkedDependencies = task.dependencies;
+            this.createTaskData.subItemsList = task.checklistItems;
+            this.createTaskData.currentSubItem = task.checkedItems;
+            this.toggleCreateMode();
+        } 
     },
 
     template: `<div id = 'dashboard-base'>
@@ -197,7 +225,10 @@ const DashboardWindow = {
                   </label>
                 </div>
               </nav>
-            </div>
+
+		<button class="button is-warning" v-on:click= "editTask(task)"> Editar tarefa </button>
+	<button class="button is-danger" v-on:click= "removerTarefa(task)"> Remover tarefa </button>
+	</div>
           </div>
           <div class="message-body-right">
             <div class="team-member-container">
@@ -258,6 +289,7 @@ const DashboardWindow = {
               </label>
             </div>
           </nav>
+	<label class="label">Subtarefas</label>
           <div class="subitems-list">
             <li v-for="item in createTaskData.subItemsList">{{item}}</li>
           </div>
