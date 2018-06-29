@@ -126,8 +126,17 @@ const DashboardWindow = {
             this.createTaskData.subItemsList.splice(i, 1);
             this.createTaskData.currentSubItem = "";
         },
-
-
+        "clearTaskData": function() {
+           // clear previous create data
+            this.createTaskData.taskTitle = "";
+            this.createTaskData.taskDescription = "";
+            this.createTaskData.taskDeadline = "";
+            this.createTaskData.checkedTeamMembers = [];
+            this.createTaskData.checkedDependencies = [];
+            this.createTaskData.subItemsList = [];
+            this.createTaskData.currentSubItem = "";
+        },
+        
         "createTask": function() {
             axios.post('http://localhost:8000/taskcontroller/inserir', {
                     title: this.createTaskData.taskTitle,
@@ -149,15 +158,10 @@ const DashboardWindow = {
                 .catch(function(error) {
                     console.log(error);
                 });
+            
+            this.clearTaskData();
 
-            // clear previous create data
-            this.createTaskData.taskTitle = "";
-            this.createTaskData.taskDescription = "";
-            this.createTaskData.taskDeadline = "";
-            this.createTaskData.checkedTeamMembers = [];
-            this.createTaskData.checkedDependencies = [];
-            this.createTaskData.subItemsList = [];
-            this.createTaskData.currentSubItem = "";
+ 
             this.toggleCreateMode();
         },
            "editTask": function(task) {
@@ -365,7 +369,7 @@ const DashboardWindow = {
           </div>
           <div class="control">
             <button class="button is-primary" @click="createTask()">Criar</button>
-            <button class="button is-danger" @click="toggleCreateMode()">Cancel</button>
+            <button class="button is-danger"v-on:click="() => (clearTaskData() , toggleCreateMode())">Cancel</button>
           </div>
         </div>
       </article>
